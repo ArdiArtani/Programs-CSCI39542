@@ -41,7 +41,7 @@ results_4_ = psql.sqldf(query)
 results_4_.to_csv(prefix_+"4.csv", index=False)
 
 # Save the restaurant name and its NTA which can be found via a LEFT JOIN of the restaurant inspection table and NTA table. Save the results to the output file prefix+"5.csv" where prefix holds the value specified by the user. (Hint: join on the NTA code found in both (but using slightly different names). Your output should have two columns.)
-query = 'SELECT r.DBA, n.NTA FROM res_table_ as r LEFT JOIN nta_table_ as n ON n.NTA = r.NTA GROUP BY n.NTA'
+query = 'SELECT r.NTA, r.DBA as NTA_Name FROM res_table_ as r LEFT JOIN nta_table_ as n ON n.NTA = r.NTA GROUP BY n.NTA'
 results_5_ = psql.sqldf(query)
 results_5_.to_csv(prefix_+"5.csv", index=False)
 
@@ -49,3 +49,6 @@ results_5_.to_csv(prefix_+"5.csv", index=False)
 query = 'SELECT distinct n.NTA AS nta_code, r."CUISINE DESCRIPTION" AS nta_description, count(distinct r.DBA) AS cnt_restaurants FROM res_table_ AS r LEFT JOIN nta_table_ AS n ON n.NTA = r.NTA GROUP BY nta_code, nta_description'
 results_6_ = psql.sqldf(query)
 results_6_.to_csv(prefix_+"6.csv", index=False)
+
+
+# .
