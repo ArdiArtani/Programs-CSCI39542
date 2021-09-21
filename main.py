@@ -46,7 +46,7 @@ results_5_ = psql.sqldf(query)
 results_5_.to_csv(prefix_+"5.csv", index=False)
 
 # Building on the result from 5) above, keep the LEFT JOIN as is, do one more level of aggregation, so that the end result contains 3 columns (unique NTA code, unique NTA description, and the count distinct restaurants as grouped by the first 2 columns). Save result to the output file prefix+"6.csv" where prefix holds the value specified by the user.
-query = 'SELECT distinct n.NTA AS nta_code, r."CUISINE DESCRIPTION" AS nta_description, count(distinct r.DBA) AS cnt_restaurants FROM res_table_ AS r LEFT JOIN nta_table_ AS n ON n.NTA = r.NTA GROUP BY nta_code, nta_description'
+query = 'SELECT distinct n.NTA, n.NTA_Name, count(distinct r.DBA) AS num_restaurants FROM res_table_ AS r LEFT JOIN nta_table_ AS n ON n.NTA = r.NTA GROUP BY n.NTA, n.NTA_Name'
 results_6_ = psql.sqldf(query)
 results_6_.to_csv(prefix_+"6.csv", index=False)
 
