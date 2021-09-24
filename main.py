@@ -48,7 +48,7 @@ def exponentialSmoothing(column):
     return list_
 
 
-column = [10,20,30,40,20]
-print(column)
-print(exponentialSmoothing(column))
+# column = [10,20,30,40,20]
+# print(column)
+# print(exponentialSmoothing(column))
 # 10,15,22.5,31.25,25.625
