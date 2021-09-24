@@ -36,9 +36,13 @@ def cyclicAverage(column):
         list_.append(avg_)
     return list_
 
-# list = [10,20,30,50,60]
-# print(cyclicAverage(list))
-
 # exponentialSmoothing(column): Assumes the input is a Series of numerical data. Returns a Series with a weighted average of the previous values with the most recent values have higher weight and the older ones have lower weights. The value for the first entry, newCol[0] is column[0]. The value for subsequent entries is newCol[t+1] = 0.5*column[t+1] + 0.5*newCol[t]. For example, if we had the same Series starting the same as above, 10,20,30,40,20, our new column would start 10,15,22.5,31.25,25.625 (since the first entry is the same, 0.5*20+0.5*10 = 15, 0.5*30+0.5*15= 22.5, 0.5*40+0.5*22.5 = 31.25, 0.5*20 + 0.5*31.25 = 25.625).
-# def exponentialSmoothing(column):
-#     return column
+def exponentialSmoothing(column):
+    ## Start with the first point
+    list_ = [column[0]]
+    alpha_ = .5
+
+    for value in range(1, len(column)):
+        newCol_ = alpha * column[value - 1] + (1 - alpha) * list_[value - 1]
+        list_.append(newCol_)
+    return list_
