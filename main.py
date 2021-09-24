@@ -21,8 +21,7 @@ def cumulativeAverage(column):
 # cyclicAverage(column): Assumes the input is a Series of numerical data. Returns a Series with the average of the current day with, if they exist, the value from 7 days previously and 14 days previously. That is, if they exist, for entry at index i, take the average of the values at indices i-offset, i-2*offset, and i-3*offset, as the computation. Since ridership is highly dependent on the day of the week, this averages the values of the same day in past weeks.
 def cyclicAverage(column):
     list_ = []
-    count_ = 0
-    sum_ = avg_ = 0
+    count_ = sum_ = avg_ = 0
 
     for i in column:
         count_ = 1
@@ -33,7 +32,7 @@ def cyclicAverage(column):
         if(i - 14 > 0):
             sum_ += column[i-14]
             count_ += 1
-        avg_ = sum_ / count_
+        int(avg_) = sum_ / count_
         list_.append(avg_)
     return list_
 
