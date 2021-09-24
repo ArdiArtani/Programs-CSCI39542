@@ -37,9 +37,6 @@ def cyclicAverage(column):
         list_.append(avg_)
     return list_
 
-# def cyclicAverage(column):
-#     return column
-
 # list = [10,20,30,50,60]
 # print(cyclicAverage(list))
 
