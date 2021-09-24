@@ -43,6 +43,6 @@ def exponentialSmoothing(column):
     alpha_ = .5
 
     for value in range(1, len(column)):
-        newCol_ = alpha * column[value - 1] + (1 - alpha) * list_[value - 1]
+        newCol_ = alpha_ * column[value - 1] + (1 - alpha_) * list_[value - 1]
         list_.append(newCol_)
     return list_
