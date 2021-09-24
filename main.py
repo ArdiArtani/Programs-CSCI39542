@@ -22,7 +22,7 @@ def cumulativeAverage(column):
 def cyclicAverage(column):
     list_ = []
     count_ = 0
-    sum_ = avg_ = 0.0
+    sum_ = avg_ = 0
 
     for i in column:
         count_ = 1
