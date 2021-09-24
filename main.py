@@ -23,7 +23,7 @@ def cyclicAverage(column):
     list_ = []
     sum_ = avg_ = 0.0
 
-    for value in column-1:
+    for value in range(len(column)):
         count_ = 1
         sum_ = column[value]
         if(value - 7 > 0):
