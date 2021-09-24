@@ -19,11 +19,29 @@ def cumulativeAverage(column):
     return list_
 
 # cyclicAverage(column): Assumes the input is a Series of numerical data. Returns a Series with the average of the current day with, if they exist, the value from 7 days previously and 14 days previously. That is, if they exist, for entry at index i, take the average of the values at indices i-offset, i-2*offset, and i-3*offset, as the computation. Since ridership is highly dependent on the day of the week, this averages the values of the same day in past weeks.
+def cyclicAverage(column):
+    list_ = []
+    count_ = 0
+    sum_ = avg_ = 0.0
+
+    for i in column:
+        count_ = 1
+        sum_ = column[i]
+        if(i - 7 > 0):
+            sum_ += column[i-7]
+            count_ += 1
+        if(i - 14 > 0):
+            sum_ += column[i-14]
+            count_ += 1
+        avg_ = sum_ / count_
+        list_.append(avg_)
+    return list_
+
 # def cyclicAverage(column):
-    # return column
+#     return column
 
-
-
+# list = [10,20,30,50,60]
+# print(cyclicAverage(list))
 
 # exponentialSmoothing(column): Assumes the input is a Series of numerical data. Returns a Series with a weighted average of the previous values with the most recent values have higher weight and the older ones have lower weights. The value for the first entry, newCol[0] is column[0]. The value for subsequent entries is newCol[t+1] = 0.5*column[t+1] + 0.5*newCol[t]. For example, if we had the same Series starting the same as above, 10,20,30,40,20, our new column would start 10,15,22.5,31.25,25.625 (since the first entry is the same, 0.5*20+0.5*10 = 15, 0.5*30+0.5*15= 22.5, 0.5*40+0.5*22.5 = 31.25, 0.5*20 + 0.5*31.25 = 25.625).
 # def exponentialSmoothing(column):
