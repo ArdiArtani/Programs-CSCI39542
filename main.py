@@ -23,14 +23,14 @@ def cyclicAverage(column):
     list_ = []
     sum_ = avg_ = 0.0
 
-    for value in column:
+    for value in column-1:
         count_ = 1
         sum_ = column[value]
         if(value - 7 > 0):
-            sum_ += column[(value-1)-7]
+            sum_ += column[value-7]
             count_ += 1
         if(value - 14 > 0):
-            sum_ += column[(value-1)-14]
+            sum_ += column[value-14]
             count_ += 1
         avg_ = float(sum_ / count_)
         list_.append(avg_)
