@@ -32,7 +32,7 @@ def cyclicAverage(column):
         if(value - 14 > 0):
             sum_ += column[value-14]
             count_ += 1
-        avg_ = float(sum_ / count_)
+        avg_ = float(sum_) / float(count_)
         list_.append(avg_)
     return list_
 
