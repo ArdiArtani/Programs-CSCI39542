@@ -3,16 +3,20 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: stackoverflow, python
 """
-
-# In lecture, we used the Pandas' function, rolling() to compute a 7-day average of subway ridership for the visualization of ridership in 2020. For this program, write three functions that take as input a Pandas' series (e.g. a column of a DataFrame) that highlights different patterns in the data:
-
+# import pandas as pd
 
 # cumulativeAverage(column): Assumes the input is a Series of numerical data. Returns a Series with the cumulative (running) average of the values. For example, if the first 5 entries are 10,20,30,40,20, the Series that is returned would start out as 10,15,20,25,24 (since 10/1 = 10, (10+20)/2 = 15, (10+20+30)/3 = 20, (10+20+30+40)/4 = 25, (10+20+30+40+20)/5 = 24). Note that it is different that rolling() we used in class, since this function creates a value for all entries and averages across all values seen.
-# def cumulativeAverage(column):
-#
-#     return column
+def cumulativeAverage(column):
+    list_ = []
+    count_ = 0
+    sum_ = avg_ = 0.0
 
-
+    for value in column:
+        sum_ += value
+        avg_ = sum_ /(count_ + 1)
+        count_ += 1
+        list_.append(avg_)
+    return list_
 
 # cyclicAverage(column): Assumes the input is a Series of numerical data. Returns a Series with the average of the current day with, if they exist, the value from 7 days previously and 14 days previously. That is, if they exist, for entry at index i, take the average of the values at indices i-offset, i-2*offset, and i-3*offset, as the computation. Since ridership is highly dependent on the day of the week, this averages the values of the same day in past weeks.
 # def cyclicAverage(column):
