@@ -22,12 +22,13 @@ def extractLatLon(row):
 # extractTitle(row): This function concatenates the values from the columns NAME, CITY, and ZIP code into a single string, separated by a comma and space, and returns the string (to be used as the title for our visualizations). For example, when applying this function to the first data row, the return value would be: 115th Street, New York, 10026.
 def extractTitle(row):
 
-    r_data_ = row.split(',')
-    name_ = r_data_[1]
-    city_ = r_data_[4]
-    zip_ = r_data_[5]
+    # r_data_ = row.split(',')
+    # name_ = r_data_[1]
+    # city_ = r_data_[4]
+    # zip_ = r_data_[5]
 
-    return name_ + ', ' + city_ + ', ' + zip_
+
+    return row['NAME'] + ', ' + row['CITY'] + ', ' + row['ZIP']
 
 
 
