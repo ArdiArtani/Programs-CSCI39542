@@ -13,7 +13,7 @@ def extractLatLon(row):
     regex_ = r'POINT \((.*?) (.*)\)'
     geom_ = str(row['the_geom'])
     lat_, lon_ = re.search(regex_, geom_).groups()
-    return lat_ + ", " + lon_
+    return float(lat_) + ", " + float(lon_)
 
 # extractTitle(row): This function concatenates the values from the columns NAME, CITY, and ZIP code into a single string, separated by a comma and space, and returns the string (to be used as the title for our visualizations). For example, when applying this function to the first data row, the return value would be: 115th Street, New York, 10026.
 def extractTitle(row):
