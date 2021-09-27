@@ -10,7 +10,6 @@ import re
 
 # This function takes the values from the column the_geom and extracts the longitude and latitude from the string (they are surrounded by parenthesis and separated by a space, and returns the two as numerical values. For example, the function would return -73.95353074430393, 40.80297988196676 when applied to the first row of data.
 def extractLatLon(row):
-    regex_ = r'POINT \((.*?) (.*)\)'
     geom_ = str(row['the_geom'])
     lat_, lon_= re.search(regex_, geom_).groups()
     return (float(lat_), float(lon_))
