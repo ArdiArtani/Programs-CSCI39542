@@ -5,6 +5,7 @@ Resources: stackoverflow, lecture8slides.pdf
 """
 import pandas as pd
 import matplotlib.pyplot as plt
+import figure
 
 
 # The goal is to create a plot of NYC OpenData Motor Vehicle Collisions that follows this style. For example, here is the plot for January 2020 dataset:
