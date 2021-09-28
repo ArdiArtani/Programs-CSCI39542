@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoverflow
+Resources: stackoverflow, lecture8slides.pdf
 """
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,7 +16,7 @@ input_file_ = input('Please enter input file name: ')
 output_file_ = input('Please enter output file name: ')
 
 # input_file_ = "Motor_Vehicle_Collisions_Mar_2020.csv"
-# output_file_ = "output.csv"
+# output_file_ = "output.png"
 
 # read csv files
 df = pd.read_csv(input_file_)
@@ -24,3 +24,4 @@ boroDF = df.groupby(['BOROUGH','CRASH DATE']).count()['CRASH TIME'].unstack().tr
 
 boroDF.plot()
 plt.show()
+plt.savefig(output_file_)
