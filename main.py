@@ -24,14 +24,13 @@ df = pd.read_csv(input_file_)
 boroDF = df.groupby(['BOROUGH', 'CRASH DATE']).count()[
                     'CRASH TIME'].unstack().transpose()
 
-# Image is figsize(12,8) ((800, 1200, 4))
-plt.figure(figsize=(12, 8), dpi=80)
+
 plt.title('Collisions in New York City')
 plt.suptitle('By borough and date in code')
 
-
-# Did not find CSci 39542, Hunter College as a course name and Source: OpenData NYC in code as data source
-
+# Image is figsize(12,8) ((800, 1200, 4))
+plt.figure(figsize=(12, 8))
 boroDF.plot()
+
 plt.show()
 plt.savefig(output_file_)
