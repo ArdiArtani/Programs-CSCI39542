@@ -23,17 +23,12 @@ boroDF = df.groupby(['BOROUGH', 'CRASH DATE']).count()[
                     'CRASH TIME'].unstack().transpose()
 
 boroDF.plot()
-ax_ = plt.gca()
-# Did not find CSci 39542, Hunter College as a course name and Source: OpenData NYC in code as data source
+
 plt.title('Collisions in New York City')
 plt.suptitle('By borough and date in code')
 fig = plt.figure()
 fig.set_figheight(8)
 fig.set_figwidth(12)
-# plt.figure(figsize=(12, 8))
-# plt.figtext(0.5, 0.01, "one text and next text", ha="center", fontsize=18, bbox={"facecolor":"orange", "alpha":0.5, "pad":5})
-plt.text(0.25, 0.25, 'Course: CSci 39542, Hunter College',
-         horizontalalignment='left', verticalalignment='bottom', transform=ax_.transAxes)
 # plt.text("Course: CSci 39542, Hunter College")
 # plt.text("Source: OpenData NYC")
 plt.show()
