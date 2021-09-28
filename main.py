@@ -26,8 +26,5 @@ plt.suptitle('By borough and date in code')
 fig = plt.figure()
 fig.set_figheight(8)
 fig.set_figwidth(12)
-# plt.text("Course: CSci 39542, Hunter College")
-# plt.text("Source: OpenData NYC")
-# plt.show()
 
 plt.savefig(output_file_)
