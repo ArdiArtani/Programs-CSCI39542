@@ -25,7 +25,7 @@ boroDF = df.groupby(['BOROUGH', 'CRASH DATE']).count()[
                     'CRASH TIME'].unstack().transpose()
 
 # Image is figsize(12,8) ((800, 1200, 4))
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(12, 8), dpi=80)
 plt.title('Collisions in New York City')
 plt.suptitle('By borough and date in code')
 
