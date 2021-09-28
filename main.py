@@ -14,9 +14,6 @@ import matplotlib.pyplot as plt
 input_file_ = input('Please enter input file name: ')
 output_file_ = input('Please enter output file name: ')
 
-# input_file_ = "Motor_Vehicle_Collisions_Mar_2020.csv"
-# output_file_ = "output.png"
-
 # read csv files
 df = pd.read_csv(input_file_)
 boroDF = df.groupby(['BOROUGH', 'CRASH DATE']).count()[
@@ -31,6 +28,6 @@ fig.set_figheight(8)
 fig.set_figwidth(12)
 # plt.text("Course: CSci 39542, Hunter College")
 # plt.text("Source: OpenData NYC")
-plt.show()
+# plt.show()
 
 plt.savefig(output_file_)
