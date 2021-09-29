@@ -1,32 +1,29 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoverflow, lecture8slides.pdf
+Resources: n/a
 """
 import pandas as pd
-import matplotlib.pyplot as plt
 
-# The goal is to create a plot of NYC OpenData Motor Vehicle Collisions that follows this style. For example, here is the plot for January 2020 dataset:
+# get inputs:
+input_file_ = input('Enter input file name: ')
+output_file_ = input('Enter output file name: ')
+grade_ = input('Enter grade: ')
+year_ = input('Enter year: ')
 
-# Your program should begin by asking the user for input and output files. It should be written to take any dataset from the NYC OpenData Motor Vehicle Collisions and produce an image that matches this style. The resulting image should be saved to the output file specified by the user.
-
-# get file names:
-input_file_ = input('Please enter input file name: ')
-output_file_ = input('Please enter output file name: ')
+# input_file_ = 'public-district-attendance-results-2014-2019.csv'
+# output_file_ = 'attendanceThirdGrade2019.csv'
+# grade_ = '3'
+# year_ = '2018-19'
 
 # read csv files
 df = pd.read_csv(input_file_)
-boroDF = df.groupby(['BOROUGH', 'CRASH DATE']).count()[
-                    'CRASH TIME'].unstack().transpose()
 
-boroDF.plot()
+# convert to strings
+df['Grade'] = df['Grade'].astype(str)
 
-plt.title('Collisions in New York City')
-plt.suptitle('By borough and date in code')
-fig = plt.figure()
-fig.set_figheight(8)
-fig.set_figwidth(12)
-# plt.text("Course: CSci 39542, Hunter College")
-# plt.text("Source: OpenData NYC")
+# filter by grade and year
+results_ = df[(df.Grade == grade_) & (df.Year == year_)]
 
-plt.savefig(output_file_)
+# save results
+results_.to_csv(output_file_, index=False)
