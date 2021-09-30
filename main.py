@@ -5,25 +5,35 @@ Resources: n/a
 """
 import pandas as pd
 
-# get inputs:
-input_file_ = input('Enter input file name: ')
-output_file_ = input('Enter output file name: ')
-grade_ = input('Enter grade: ')
-year_ = input('Enter year: ')
+def extractDistrict(name):
+    return int(name[:2])
 
-# input_file_ = 'public-district-attendance-results-2014-2019.csv'
-# output_file_ = 'attendanceThirdGrade2019.csv'
-# grade_ = '3'
-# year_ = '2018-19'
+# get inputs:
+ela_file_ = input('Enter file containing ELA scores: ')
+math_file_ = input('Enter file containing MATH scores: ')
+# ela_file_ = 'ela_trunc.csv'
+# math_file_ = 'math_trunc.csv'
 
 # read csv files
-df = pd.read_csv(input_file_)
+df_ela_ = pd.read_csv(ela_file_)
+df_math_ = pd.read_csv(ela_file_)
 
-# convert to strings
-df['Grade'] = df['Grade'].astype(str)
+# add subject column
+df_ela_['Subject'] = 'ELA'
+df_math_['Subject'] = 'MATH'
 
-# filter by grade and year
-results_ = df[(df.Grade == grade_) & (df.Year == year_)]
+# concat both csv filess
+df_ = [df_ela_, df_math_]
+df_ = pd.concat(df_)
 
-# save results
-results_.to_csv(output_file_, index=False)
+# extract district
+df_['District'] = df_['DBN'].apply(extractDistrict)
+
+# calculate proficiency
+df_['Proficiency'] = (df_['# Level 3+4']/df_['Number Tested']) * 100
+
+#  group and get maxium profiency
+df_ = df_.loc[ df_.groupby('District')['Proficiency'].idxmax() ]
+
+filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
+print(df_[filtered_header_])
