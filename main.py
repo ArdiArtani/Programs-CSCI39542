@@ -35,6 +35,10 @@ df_['Proficiency'] = (df_['# Level 3+4']/df_['Number Tested']) * 100
 #  group and get maxium profiency
 df_ = df_.loc[ df_.groupby('District')['Proficiency'].idxmax() ]
 
-# df_.reset_index(drop=True)
+df_.reset_index(inplace=True)
+
+
 filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
 print(df_[filtered_header_])
+
+# pd.to_csv(df_[filtered_header_], index=False)
