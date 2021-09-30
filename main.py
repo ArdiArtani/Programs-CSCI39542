@@ -26,19 +26,24 @@ df_math_['Subject'] = 'MATH'
 df_ = [df_ela_, df_math_]
 df_ = pd.concat(df_)
 
+
 # extract district
 df_['District'] = df_['DBN'].apply(extractDistrict)
 
 # calculate proficiency
 df_['Proficiency'] = (df_['# Level 3+4']/df_['Number Tested']) * 100
 
+
+df_.drop(['DBN','Grade','Year', 'Number Tested', '# Level 3+4'],inplace=True,axis=1)
+
 #  group and get maxium profiency
 df_ = df_.loc[ df_.groupby('District')['Proficiency'].idxmax() ]
 
-# df_.reset_index(inplace=True)
+df_.reset_index(inplace=True)
 
+print(df_)
 
-filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
-print(df_[filtered_header_])
+# filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
+# print(df_[filtered_header_])
 
 # pd.to_csv(df_[filtered_header_], index=False)
