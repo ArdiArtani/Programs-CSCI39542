@@ -6,7 +6,7 @@ Resources: n/a
 import pandas as pd
 
 def extractDistrict(name):
-    return int(name[:2])
+    return name[:2]
 
 # get inputs:
 ela_file_ = input('Enter file containing ELA scores: ')
@@ -35,7 +35,7 @@ df_['Proficiency'] = (df_['# Level 3+4']/df_['Number Tested']) * 100
 #  group and get maxium profiency
 df_ = df_.loc[ df_.groupby('District')['Proficiency'].idxmax() ]
 
-df_.reset_index(inplace=True)
+# df_.reset_index(inplace=True)
 
 
 filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
