@@ -9,10 +9,10 @@ def extractDistrict(name):
     return int(name[:2])
 
 # get inputs:
-# ela_file_ = input('Enter file containing ELA scores: ')
-# math_file_ = input('Enter file containing MATH scores: ')
-ela_file_ = 'ela_trunc.csv'
-math_file_ = 'math_trunc.csv'
+ela_file_ = input('Enter file containing ELA scores: ')
+math_file_ = input('Enter file containing MATH scores: ')
+# ela_file_ = 'ela_trunc.csv'
+# math_file_ = 'math_trunc.csv'
 
 # read csv files
 df_ela_ = pd.read_csv(ela_file_, index_col=False)
