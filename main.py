@@ -6,17 +6,21 @@ Resources: n/a
 import pandas as pd
 
 def extractDistrict(name):
-    return name[:2]
+    return str(name[:2])
 
 # get inputs:
-# ela_file_ = input('Enter file containing ELA scores: ')
-# math_file_ = input('Enter file containing MATH scores: ')
-ela_file_ = 'ela_trunc.csv'
-math_file_ = 'math_trunc.csv'
+ela_file_ = input('Enter file containing ELA scores: ')
+math_file_ = input('Enter file containing MATH scores: ')
+# ela_file_ = 'ela_trunc.csv'
+# math_file_ = 'math_trunc.csv'
 
 # read csv files
 df_ela_ = pd.read_csv(ela_file_, index_col=False)
 df_math_ = pd.read_csv(ela_file_, index_col=False)
+
+# add subject column
+df_ela_['Subject'] = 'ELA'
+df_math_['Subject'] = 'MATH'
 
 # extract district
 df_ela_['District'] = df_ela_['DBN'].apply(extractDistrict)
@@ -30,13 +34,10 @@ df_math_['Proficiency'] = (df_math_['# Level 3+4']/df_math_['Number Tested']) * 
 df_ela_ = df_ela_.loc[ df_ela_.groupby('District')['Proficiency'].idxmax() ]
 df_math_ = df_math_.loc[ df_math_.groupby('District')['Proficiency'].idxmax() ]
 
-# add subject column
-df_ela_['Subject'] = 'ELA'
-df_math_['Subject'] = 'MATH'
-
 # concat both csv filess
-df_ = [df_ela_, df_math_]
-df_ = pd.concat(df_, axis=0)
+df_ = pd.concat([df_ela_, df_math_], axis=0)
+
+df_ = pd.pivottable(df_, index=['District','Subject'], aggfunc=max)
 
 filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
 print(df_[filtered_header_])
