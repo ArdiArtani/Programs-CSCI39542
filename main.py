@@ -37,3 +37,6 @@ df_ = pd.concat([df_ela_, df_math_], axis=0)
 
 # create pivot table
 df_ = pd.pivot_table(df_, index=['District','Subject'], aggfunc=max)
+
+filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
+print(df_[filtered_header_])
