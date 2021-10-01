@@ -4,7 +4,6 @@ Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
 import pandas as pd
-
 def extractDistrict(name):
     return str(name[:2])
 
@@ -29,11 +28,12 @@ df_ela_ = df_ela_.loc[ df_ela_.groupby('District')['Proficiency'].idxmax() ]
 df_math_ = df_math_.loc[ df_math_.groupby('District')['Proficiency'].idxmax() ]
 
 # reindex both csv files
-df_ela_ = df_ela_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
-df_math_ = df_math_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
+df1_ = df_ela_.reindex(columns = ['District', 'Subject', 'Proficiency', 'School Name'])
+df2_ = df_math_.reindex(columns = ['District', 'Subject', 'Proficiency', 'School Name'])
 
 # concat both csv filess
-df_ = pd.concat([df_ela_, df_math_], axis=0)
+df_ = pd.concat([df1_,df2_], axis=0)
 
 # create pivot table
 df_ = pd.pivot_table(df_, index=['District','Subject'], aggfunc=max)
+print(df_)
