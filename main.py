@@ -29,8 +29,8 @@ df_ela_ = df_ela_.loc[ df_ela_.groupby('District')['Proficiency'].idxmax() ]
 df_math_ = df_math_.loc[ df_math_.groupby('District')['Proficiency'].idxmax() ]
 
 # reindex both csv files
-df_ela_ = df_ela_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
-df_math_ = df_math_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
+# df_ela_ = df_ela_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
+# df_math_ = df_math_.reindex(['District', 'Subject', 'Proficiency', 'School Name'])
 
 # concat both csv filess
 df_ = pd.concat([df_ela_, df_math_], axis=0)
