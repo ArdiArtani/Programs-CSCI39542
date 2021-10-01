@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: stackoverflow, python, geeksforgeeks
 """
 import pandas as pd
 def extractDistrict(name):
