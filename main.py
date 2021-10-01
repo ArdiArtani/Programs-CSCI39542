@@ -8,15 +8,9 @@ import pandas as pd
 def extractDistrict(name):
     return str(name[:2])
 
-# get inputs:
-ela_file_ = input('Enter file containing ELA scores: ')
-math_file_ = input('Enter file containing MATH scores: ')
-# ela_file_ = 'ela_trunc.csv'
-# math_file_ = 'math_trunc.csv'
-
 # read csv files
-df_ela_ = pd.read_csv(ela_file_, index_col=False)
-df_math_ = pd.read_csv(ela_file_, index_col=False)
+df_ela_ = pd.read_csv("ela_trunc.csv", index_col=False)
+df_math_ = pd.read_csv("math_trunc.csv", index_col=False)
 
 # add subject column
 df_ela_['Subject'] = 'ELA'
@@ -34,10 +28,10 @@ df_math_['Proficiency'] = (df_math_['# Level 3+4']/df_math_['Number Tested']) * 
 df_ela_ = df_ela_.loc[ df_ela_.groupby('District')['Proficiency'].idxmax() ]
 df_math_ = df_math_.loc[ df_math_.groupby('District')['Proficiency'].idxmax() ]
 
+# reindex both csv files
+
 # concat both csv filess
 df_ = pd.concat([df_ela_, df_math_], axis=0)
 
-df_ = pd.pivottable(df_, index=['District','Subject'], aggfunc=max)
-
-filtered_header_ = ["District", "Subject", "Proficiency", "School Name"]
-print(df_[filtered_header_])
+# create pivot table
+df = pd.pivot_table(df_, index=['District','Subject'], aggfunc=max)
