@@ -1,39 +1,23 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoverflow
+Resources: stackoverflow, het.as.utexas.edu/HET/Software/Scipy/stats.html
 """
 import numpy as np
-# dropNeg(xS,yS): This function takes two iterables, xS and yS of numeric values. If any entry is not positive in either iterable, that indexed value is dropped from both series. The results are returned as two separate iterables. To do this, first zip the series together, drop all the pairs with zero or negative values, and then unzip to return series with only positive values.
-# For example, if xS contains [1,2,0,3,4] and yS contains [0,-1.5,4,3,9], then the zip(xS,yS) has entries [(1,0),(1,-1.5),(0,4),(3,3),(4,9)]. Dropping all tuples that contain non-positive values yields [(3,3),(4,9)], and the unzipped results, [3,4] and [3,9], are returned.
+import scipy.stats as stats
 
+# In Lecture #9 and Section 11.5, we used smoothing to visualize data. For this program, write a function that takes two arguments, an Numpy array of x-axis coordinates, and a list of numeric values, and returns the corresponding y-values for the sum of the gaussian probability distribution functions (pdf's) for each point in the list.
 
-def dropNeg(xS, yS):
+# computeSmoothing(xes,points): This function takes a numpy array xes and a list, points, of numeric values. For each p in points, the function should compute the normal probability distribution function (scipy.norm.pdf) centered at loc = p with standard deviation scale = 0.5 for all values in xes. The return value is a numpy array of the sum of these at each point.
+def computeSmoothing(xes,points):
+    data_ = list(xes)
+    std_ = 0.5
+    sum_ = 0.0
+    for p_ in range(points[0]):
+        sum_ += stats.norm.pdf(xes[p_], p_, std_)
+    return sum_
 
-    # zipping the arrays
-    zip_array_ = list(zip(xS, yS))
-
-    pos_array_ = []
-    for x, y in zip_array_:
-        if (x > 0) and (y > 0):
-            xy_ = [x, y]
-            pos_array_.append(xy_)
-
-    x_, y_ = map(list, zip(*pos_array_))
-    return (x_, y_)
-
-# logScale(xS,yS): This function assumes that the inputted iterables contain numeric values, are positive and not null, and returns the np.log of each. For example, when applying this function to the inputs [3,4] and [3,9], the function returns [1.098612, 1.386294] and [1.098612,2.19722458].
-
-
-def logScale(xS, yS):
-    dropNeg_array_ = dropNeg(xS, yS)
-    xS_ = np.log(dropNeg_array_[0])
-    yS_ = np.log(dropNeg_array_[1])
-    return (xS_, yS_)
-
-
-# xS = [1, 2, 0, 3, 4]
-# yS = [0, -1.5, 4, 3, 9]
-# logScale(xS, yS)
-# print('----')
-# print(logScale(xS, yS))
+# xes = np.linspace(0, 10, 1000)
+# density = computeSmoothing(xes,[5])
+# plt.plot(xes,density)
+# plt.show()
