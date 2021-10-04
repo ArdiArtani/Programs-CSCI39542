@@ -17,7 +17,7 @@ def computeSmoothing(xes, points):
     return sum_
 
 
-xes = np.linspace(0, 10, 1000)
-density = computeSmoothing(xes,[5])
-plt.plot(xes,density)
-plt.show()
+# xes = np.linspace(0, 10, 1000)
+# density = computeSmoothing(xes,[5])
+# plt.plot(xes,density)
+# plt.show()
