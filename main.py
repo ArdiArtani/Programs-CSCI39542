@@ -22,11 +22,14 @@ def dropNeg(xS, yS):
 # logScale(xS,yS): This function assumes that the inputted iterables contain numeric values, are positive and not null, and returns the np.log of each. For example, when applying this function to the inputs [3,4] and [3,9], the function returns [1.098612, 1.386294] and [1.098612,2.19722458].
 def logScale(xS, yS):
     dropNeg_array_ = dropNeg(xS, yS)
-    xS_ = list(np.log(dropNeg_array_[0]))
-    yS_ = list(np.log(dropNeg_array_[1]))
+    print(np.log(dropNeg_array_[0]))
+    xS_ = np.log(dropNeg_array_[0])
+    yS_ = np.log(dropNeg_array_[1])
     return (xS_, yS_)
 
 
 # xS = [1,2,0,3,4]
 # yS = [0,-1.5,4,3,9]
+# logScale(xS, yS)
+# print('----')
 # print(logScale(xS, yS))
