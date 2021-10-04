@@ -3,6 +3,7 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: stackoverflow
 """
+import pandas as pd
 import numpy as np
 
 # dropNeg(xS,yS): This function takes two iterables, xS and yS of numeric values. If any entry is not positive in either iterable, that indexed value is dropped from both series. The results are returned as two separate iterables. To do this, first zip the series together, drop all the pairs with zero or negative values, and then unzip to return series with only positive values.
@@ -28,6 +29,7 @@ def logScale(xS, yS):
     yS_ = list(np.log(dropNeg_array_[1]))
     return (xS_, yS_)
 
-xS = [1,2,0,3,4]
-yS = [0,-1.5,4,3,9]
+
+# xS = [1,2,0,3,4]
+# yS = [0,-1.5,4,3,9]
 print(logScale(xS, yS))
