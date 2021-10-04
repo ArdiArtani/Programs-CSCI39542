@@ -13,7 +13,7 @@ def computeSmoothing(xes,points):
     data_ = list(xes)
     std_ = 0.5
     sum_ = 0.0
-    for p_ in range(points[0]):
+    for p_ in range(points[0]+1):
         sum_ += stats.norm.pdf(xes[p_], p_, std_)
     return sum_
 
