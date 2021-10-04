@@ -11,7 +11,7 @@ import scipy.stats as stats
 def computeSmoothing(xes,points):
     values_ = list(xes)
     sum_ = 0.0
-    for p_ in range(points[0]):
+    for p_ in range(values_.count()):
         sum_ = np.append(sum_, stats.norm.pdf(values_[p_], p_, 0.5))
     return sum_
 
