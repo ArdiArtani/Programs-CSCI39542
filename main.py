@@ -1,43 +1,33 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoverflow, python, geeksforgeeks
+Resources: stackoverflow
 """
-import pandas as pd
-def extractDistrict(name):
-    return str(name[:2])
+import numpy as np
 
-# read csv files
-df_ela_ = pd.read_csv("ela_trunc.csv", index_col=False)
-df_math_ = pd.read_csv("math_trunc.csv", index_col=False)
+# dropNeg(xS,yS): This function takes two iterables, xS and yS of numeric values. If any entry is not positive in either iterable, that indexed value is dropped from both series. The results are returned as two separate iterables. To do this, first zip the series together, drop all the pairs with zero or negative values, and then unzip to return series with only positive values.
+# For example, if xS contains [1,2,0,3,4] and yS contains [0,-1.5,4,3,9], then the zip(xS,yS) has entries [(1,0),(1,-1.5),(0,4),(3,3),(4,9)]. Dropping all tuples that contain non-positive values yields [(3,3),(4,9)], and the unzipped results, [3,4] and [3,9], are returned.
+def dropNeg(xS, yS):
+    # zipping the arrays
+    zip_array_ = list(zip(xS, yS))
 
-# add subject column
-df_ela_['Subject'] = 'ELA'
-df_math_['Subject'] = 'MATH'
+    pos_array_ = []
+    for x, y in zip_array_:
+        if (x > 0) and (y > 0):
+            xy_ = [x, y]
+            pos_array_.append(xy_)
 
-# extract district
-df_ela_['District'] = df_ela_['DBN'].apply(extractDistrict)
-df_math_['District'] = df_math_['DBN'].apply(extractDistrict)
+    print(pos_array_)
 
-# calculate proficiency
-df_ela_['Proficiency'] = (df_ela_['# Level 3+4']/df_ela_['Number Tested']) * 100
-df_math_['Proficiency'] = (df_math_['# Level 3+4']/df_math_['Number Tested']) * 100
+    return pos_array_
 
-# add in the schools column
-df_ela_['School Name'] = df_ela_['School Name']
-df_math_['School Name'] = df_math_['School Name']
+# logScale(xS,yS): This function assumes that the inputted iterables contain numeric values, are positive and not null, and returns the np.log of each. For example, when applying this function to the inputs [3,4] and [3,9], the function returns [1.098612, 1.386294] and [1.098612,2.19722458].
+def logScale(xS, yS):
+    dropNeg_array_ = dropNeg(xS, yS)
+    xS_ = list(np.log(dropNeg_array_[0]))
+    yS_ = list(np.log(dropNeg_array_[1]))
+    return (xS_, yS_)
 
-#  group and get maxium profiency
-df_ela_ = df_ela_.loc[ df_ela_.groupby('District')['Proficiency'].idxmax() ]
-df_math_ = df_math_.loc[ df_math_.groupby('District')['Proficiency'].idxmax() ]
-
-# reindex both csv files
-df1_ = df_ela_.reindex(columns = ['District', 'Subject', 'Proficiency', 'School Name'])
-df2_ = df_math_.reindex(columns = ['District', 'Subject', 'Proficiency', 'School Name'])
-
-# concat both csv filess
-df = pd.concat([df1_,df2_], axis=0)
-
-# create pivot table
-df_ = pd.pivot_table(df, index=['District','Subject'], aggfunc=max)
-print(df_)
+xS = [1,2,0,3,4]
+yS = [0,-1.5,4,3,9]
+print(logScale(xS, yS))
