@@ -14,7 +14,6 @@ def dropNeg(xS, yS):
     for x, y in zip_array_:
         if (x > 0) and (y > 0):
             xy_ = [x, y]
-            xy_ = list(xy_)
             pos_array_.append(xy_)
     # print(pos_array_)
     return pos_array_
