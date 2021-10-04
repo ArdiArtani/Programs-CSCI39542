@@ -12,10 +12,10 @@ def computeSmoothing(xes,points):
     values_ = list(xes)
     sum_ = 0.0
     for p_ in range(points[0]):
-        sum_ = np.append(stats.norm.pdf(values_[p_], p_, 0.5))
+        sum_ = np.append(sum_, stats.norm.pdf(values_[p_], p_, 0.5))
     return sum_
 
-xes = np.linspace(0, 10, 1000)
-density = computeSmoothing(xes,[5])
+# xes = np.linspace(0, 10, 1000)
+# density = computeSmoothing(xes,[5])
 # plt.plot(xes,density)
 # plt.show()
