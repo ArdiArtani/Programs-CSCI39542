@@ -32,4 +32,4 @@ def logScale(xS, yS):
 
 # xS = [1,2,0,3,4]
 # yS = [0,-1.5,4,3,9]
-print(logScale(xS, yS))
+# print(logScale(xS, yS))
