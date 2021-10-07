@@ -19,7 +19,7 @@ def mae_loss(theta, y_vals):
 # For each theta in thetas, it should compute the mean squared error between theta and tips. Return an iterable of the values computed.
 def mse_estimates(thetas,tips):
     values_ = []
-    i = 0
+    i = 1
     for theta_ in range(len(thetas)):
         value_ = mse_loss(theta_, tips[i])
         values_.append(value_)
