@@ -15,7 +15,7 @@ output_ = input('Enter output file name:')
 df = pd.read_csv(input_)
 
 # calculate tip and fare
-df['percent_tip'] = ((df['tip_amount'] * 100) / df['fare_amount']).round(2)
+df['percent_tip'] = ((df['tip_amount'] * 100) / df['fare_amount']).round(1)
 df['percent_fare'] = ((df['fare_amount'] * 100) / df['total_amount']).round(1)
 
 df.to_csv(output_, index=False)
