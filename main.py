@@ -19,8 +19,8 @@ def mae_loss(theta, y_vals):
 # For each theta in thetas, it should compute the mean squared error between theta and tips. Return an iterable of the values computed.
 def mse_estimates(thetas,tips):
     values_ = []
-    i = 1
-    for theta_ in range(len(thetas)):
+    i = 0
+    for theta_ in thetas:
         value_ = mse_loss(theta_, tips[i])
         values_.append(value_)
         i += 1
@@ -34,21 +34,21 @@ def mse_estimates(thetas,tips):
 def mae_estimates(thetas,tips):
     values_ = []
     i = 0
-    for theta_ in range(len(thetas)):
+    for theta_ in thetas:
         value_ = mae_loss(theta_, tips[i])
         values_.append(value_)
         i += 1
     return values_
 
 
-# thetas = np.array([12, 13, 14, 15, 16])
-# y_vals = np.array([12.1, 12.8, 14.9, 16.3, 17.2, 18.0])
-# mse_losses = mse_estimates(thetas,y_vals)
-# abs_losses = mae_estimates(thetas,y_vals)
-# plt.scatter(thetas, mse_losses, label='MSE')
-# plt.scatter(thetas, abs_losses, label='MAE')
-# plt.title(r'Loss vs. $ \theta $ when $ \bf{y}$$= [ 12.1, 12.8, 14.9, 16.3, 17.2 ] $')
-# plt.xlabel(r'$ \theta $ Values')
-# plt.ylabel('Loss')
-# plt.legend()
-# plt.show()
+thetas = np.array([12, 13, 14, 15, 16])
+y_vals = np.array([12.1, 12.8, 14.9, 16.3, 17.2, 18.0])
+mse_losses = mse_estimates(thetas,y_vals)
+abs_losses = mae_estimates(thetas,y_vals)
+plt.scatter(thetas, mse_losses, label='MSE')
+plt.scatter(thetas, abs_losses, label='MAE')
+plt.title(r'Loss vs. $ \theta $ when $ \bf{y}$$= [ 12.1, 12.8, 14.9, 16.3, 17.2 ] $')
+plt.xlabel(r'$ \theta $ Values')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
