@@ -13,7 +13,7 @@ output_ = input('Enter output file name:')
 
 df = pd.read_csv(input_)
 
-df['percent_tip'] = (df['tip_amount'] * 100) / df['fare_amount']
-df['percent_fare'] = (df['fare_amount'] * 100) / df['total_amount']
+df['percent_tip'] = float((df['tip_amount'] * 100) / df['fare_amount'])
+df['percent_fare'] = float((df['fare_amount'] * 100) / df['total_amount'])
 
 df.to_csv(output_, index=False)
