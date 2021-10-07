@@ -6,6 +6,8 @@ Resources: textbook.ds100.org, datatechnotes.com/2019/10/accuracy-check-in-pytho
 import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
+import sklearn.metrics as metrics
+
 
 
 def mse_loss(theta, y_vals):
@@ -22,9 +24,10 @@ def mse_estimates(thetas,tips):
     i = 0
     for theta_ in thetas:
         value_ = mse_loss(theta_, tips[i])
+        print(value_)
         values_.append(value_)
         i += 1
-    return values_
+    return list(values_)
 
 
 # thetas: estimates for the population parameter for the percent tips in values, and
@@ -38,10 +41,10 @@ def mae_estimates(thetas,tips):
         value_ = mae_loss(theta_, tips[i])
         values_.append(value_)
         i += 1
-    return values_
+    return list(values_)
 
 
-thetas = np.array([12, 13, 14, 15, 16])
+thetas = np.array([12, 13, 14, 15, 16, 17])
 y_vals = np.array([12.1, 12.8, 14.9, 16.3, 17.2, 18.0])
 mse_losses = mse_estimates(thetas,y_vals)
 abs_losses = mae_estimates(thetas,y_vals)
