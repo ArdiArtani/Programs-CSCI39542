@@ -6,9 +6,7 @@ Resources: textbook.ds100.org, datatechnotes.com/2019/10/accuracy-check-in-pytho
 import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
-import sklearn.metrics as metrics
-
-
+# import sklearn.metrics as metrics
 
 def mse_loss(theta, y_vals):
     return np.mean((y_vals - theta) ** 2)
