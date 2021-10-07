@@ -6,10 +6,10 @@ Resources: n/a
 import pandas as pd
 
 # The program should open the file name provided by the user. Next, the program should copy the input file and create two new columns: percent_tip, which is 100*tip_amount/fare_amount and percent_fare, which is 100*fare_amount/total_amount. Your program should write out a new CSV file (with the name provided by the user) with the original columns as well as the two newly computed ones.
-input_ = input('Enter input file name:')
-output_ = input('Enter output file name:')
-# input_ = 'taxi_new_years_day_2020.csv'
-# output_ = 'taxi_Jan2020_with_percents.csv'
+# input_ = input('Enter input file name:')
+# output_ = input('Enter output file name:')
+input_ = 'taxi_new_years_day_2020.csv'
+output_ = 'taxi_Jan2020_with_percents.csv'
 
 df = pd.read_csv(input_)
 
