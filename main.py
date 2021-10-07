@@ -1,30 +1,54 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoverflow, het.as.utexas.edu/HET/Software/Scipy/stats.html
+Resources: textbook.ds100.org, datatechnotes.com/2019/10/accuracy-check-in-python-mae-mse-rmse-r.html
 """
 import numpy as np
 import scipy.stats as stats
-# import matplotlib.pyplot as plt
-
-# computeSmoothing(xes,points): This function takes a numpy array xes and a list, points, of numeric values. For each p in points, the function should compute the normal probability distribution function (scipy.norm.pdf) centered at loc = p with standard deviation scale = 0.5 for all values in xes. The return value is a numpy array of the sum of these at each point.
-def computeSmoothing(xes, points):
-    # values_ = list(xes)
-    sum_ = 0
-    for p_ in points:
-        sum_ += stats.norm.pdf(xes, p_, .5)
-    return sum_
+import matplotlib.pyplot as plt
 
 
-# xes = np.linspace(0, 10, 1000)
-# density = computeSmoothing(xes,[5])
-# plt.plot(xes,density)
-# plt.show()
+def mse_loss(theta, y_vals):
+    return np.mean((y_vals - theta) ** 2)
+
+def mae_loss(theta, y_vals):
+    return np.mean(abs(y_vals - theta))
+
+# thetas: estimates for the population parameter for the percent tips in values, and
+# tips: the tips observed, assumed to be a positive percentage, ranging from 0 to 100.
+# For each theta in thetas, it should compute the mean squared error between theta and tips. Return an iterable of the values computed.
+def mse_estimates(thetas,tips):
+    values_ = []
+    i = 0
+    for theta_ in range(len(thetas-1)):
+        value_ = mse_loss(theta_, tips[i])
+        values_.append(value_)
+        i += 1
+    return values_
 
 
-# pts = [2,2,5,5,2,3,4,6,7,9]
-# xes = np.linspace(0, 10, 1000)
-# density = computeSmoothing(xes,pts)
-# plt.plot(xes,density)
-# plt.fill_between(xes,density)
+# thetas: estimates for the population parameter for the percent tips in values, and
+# tips: the tips observed, assumed to be a positive percentage, ranging from 0 to 100.
+# For each theta in thetas, it should compute the mean absolute error between theta and tips. Return an iterable of the values computed.
+# Note: for each of these functions, your returned value will be an iterable with the same length as thetas.
+def mae_estimates(thetas,tips):
+    values_ = []
+    i = 0
+    for theta_ in range(len(thetas-1)):
+        value_ = mae_loss(theta_, tips[i])
+        values_.append(value_)
+        i += 1
+    return values_
+
+
+# thetas = np.array([12, 13, 14, 15, 16, 17])
+# y_vals = np.array([12.1, 12.8, 14.9, 16.3, 17.2])
+# mse_losses = mse_estimates(thetas,y_vals)
+# abs_losses = mae_estimates(thetas,y_vals)
+# plt.scatter(thetas, mse_losses, label='MSE')
+# plt.scatter(thetas, abs_losses, label='MAE')
+# plt.title(r'Loss vs. $ \theta $ when $ \bf{y}$$= [ 12.1, 12.8, 14.9, 16.3, 17.2 ] $')
+# plt.xlabel(r'$ \theta $ Values')
+# plt.ylabel('Loss')
+# plt.legend()
 # plt.show()
