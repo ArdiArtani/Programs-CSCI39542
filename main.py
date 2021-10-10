@@ -24,8 +24,15 @@ def diceSim(D1,D2,trials):
         trails_.append(pair_sum_)
 
     # add plus one since range does not include 12
-    # skipped 0 and 1; division By Zero
-    for trial_ in range(2, D1 + D2 + 1):
-        results_.append(trial_ / trails_.count(trial_))
+    # assigned 0.0 for 0 and 1; division By Zero
+    for trial_ in range(D1 + D2 + 1):
+        if(trial_ == 0 or trial_ == 1):
+            results_.append(0.0)
+        else:
+            results_.append(trial_ / trails_.count(trial_))
 
     return results_
+
+
+
+print(diceSim(6,6,10000))
