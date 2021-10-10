@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: Section 16.1.1.
+Resources: Section 16.1.1., stackoverflow
 """
 import random
 import numpy as np
@@ -23,14 +23,12 @@ def diceSim(D1,D2,trials):
         # append sum to trails array
         trails_.append(pair_sum_)
 
-    # add plus one since range does not include 12
-    # assigned 0.0 for 0 and 1; division By Zero
-    for trial_ in range(D1 + D2 + 1):
-        if(trial_ == 0 or trial_ == 1):
+    # division By Zero
+    for trial_ in range(13):
+        count_pair = trails_.count(trial_)
+        if(count_pair == 0):
             results_.append(0.0)
         else:
-            results_.append(trial_ / trails_.count(trial_))
+            results_.append(trial_ / count_pair)
 
     return results_
-
-# print(diceSim(6,6,10000))
