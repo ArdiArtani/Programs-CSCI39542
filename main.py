@@ -31,6 +31,7 @@ def diceSim(D1,D2,trials):
         else:
             results_.append(trials / count_pair)
 
+    return results_
 
 
 
