@@ -32,7 +32,7 @@ def diceSim(D1,D2,trials):
         else:
             results_.append(trials / count_pair)
 
-    return sorted(list(results_), key = float)
+    return list(results_)
 
 
 # print(diceSim(6,6,10000))
