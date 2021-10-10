@@ -33,6 +33,4 @@ def diceSim(D1,D2,trials):
 
     return results_
 
-
-
-print(diceSim(6,6,10000))
+# print(diceSim(6,6,10000))
