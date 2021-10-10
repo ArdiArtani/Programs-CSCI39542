@@ -9,9 +9,8 @@ import numpy as np
 # diceSim(D1,D2,trials) that takes as input the number of sides on die 1 (D1) and die2 (D2) and the number of trials. Your function should repeatedly sum pairs of random numbers between 1 and D1 and 1 and D2 and keep track of how many times each sum occurs. The function returns a numpy array with the fraction each sum of rolls occured.
 def diceSim(D1,D2,trials):
 
-    # create two arrays one for counting each sum pair, and store all trials
+    # create two arrays one for counting each sum pair
     results_ = np.zeros((D1 + D2 + 1))
-    trails_ = []
 
     # for loop from 1 to trails
     for i in range(trials):
@@ -28,7 +27,7 @@ def diceSim(D1,D2,trials):
         if(results_[i] != 0):
             results_[i] = (trials / results_[i])
 
-    return results_
+    return list(results_)
 
 
 
