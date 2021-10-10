@@ -1,21 +1,31 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: Section 16.1.1.
 """
-import pandas as pd
+import random
+import numpy as np
+import matplotlib.pyplot as plt
 
-# The program should open the file name provided by the user. Next, the program should copy the input file and create two new columns: percent_tip, which is 100*tip_amount/fare_amount and percent_fare, which is 100*fare_amount/total_amount. Your program should write out a new CSV file (with the name provided by the user) with the original columns as well as the two newly computed ones.
-input_ = input('Enter input file name:')
-output_ = input('Enter output file name:')
-# input_ = 'taxi_new_years_day_2020.csv'
-# output_ = 'taxi_Jan2020_with_percents.csv'
+# diceSim(D1,D2,trials) that takes as input the number of sides on die 1 (D1) and die2 (D2) and the number of trials. Your function should repeatedly sum pairs of random numbers between 1 and D1 and 1 and D2 and keep track of how many times each sum occurs. The function returns a numpy array with the fraction each sum of rolls occured.
+def diceSim(D1,D2,trials):
 
-# read input file
-df = pd.read_csv(input_)
+    # create two arrays one for counting each sum pair, and store all trials
+    results_ = []
+    trails_ = []
 
-# calculate tip and fare
-df['percent_tip'] = ((df['tip_amount'] * 100) / df['fare_amount']).round(1)
-df['percent_fare'] = ((df['fare_amount'] * 100) / df['total_amount']).round(1)
+    # for loop from 1 to trails
+    for i in range(trials):
+        # random numbers for d1 and d2
+        rand_d1_ = random.randint(1, D1)
+        rand_d2_ = random.randint(1, D2)
+        pair_sum_ = rand_d1_ + rand_d2_
+        # append sum to trails array
+        trails_.append(pair_sum_)
 
-df.to_csv(output_, index=False)
+    # add plus one since range does not include 12
+    # skipped 0 and 1; division By Zero
+    for trial_ in range(2, D1 + D2 + 1):
+        results_.append(trial_ / trails_.count(trial_))
+
+    return results_
