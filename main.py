@@ -10,7 +10,7 @@ import numpy as np
 def diceSim(D1,D2,trials):
 
     # create two arrays one for counting each sum pair
-    results_ = np.zeros((D1 + D2 + 1))
+    sumo_occurs_ = np.zeros((D1 + D2 + 1))
 
     # for loop from 1 to trails
     for i in range(trials):
@@ -20,12 +20,13 @@ def diceSim(D1,D2,trials):
         pair_sum_ = rand_d1_ + rand_d2_
 
         # add +1 for pair to results array
-        results_[pair_sum_] += 1
+        sumo_occurs_[pair_sum_] += 1
 
+    results_ = np.zeros(D1 + D2 + 1)
     # calculate fraction for each sum
     for i in range(D1 + D2 + 1):
-        if(results_[i] != 0):
-            results_[i] = (trials / results_[i])
+        if(sumo_occurs_[i] != 0):
+            results_[i] = (trials / sumo_occurs_[i])
 
     return list(results_)
 
