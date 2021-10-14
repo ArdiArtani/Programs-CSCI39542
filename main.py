@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: Section 16.1.1., stackoverflow
+Resources: n/a
 """
 
 import pandas as pd
