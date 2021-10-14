@@ -26,17 +26,17 @@ def findHighestCorr(colName,colLst,df):
 
 
 
-simpleDF = pd.DataFrame({'c1': [1,2,3,4],\
-                         'c2': [0,1,0,1],\
-                         'c3': [1,10,3,20],\
-                         'c4': [-10,-20,-30,-40],})
-print('Testing with c1 and [c3,c4]:')
-print(p23.findHighestCorr('c1',['c3','c4'],simpleDF))
-print(f'c1 has highest absolute r with {p23.findHighestCorr("c1",simpleDF.columns, simpleDF)}.')
-
-
-tips = sns.load_dataset('tips')
-print(f"Correlation coefficient between tips and size is \
-        {tips['tip'].corr(tips['size'])}")
-print(f"For tip, the highest correlation is \
-        {p23.findHighestCorr('tip',['total_bill','size'],tips)}.")
+# simpleDF = pd.DataFrame({'c1': [1,2,3,4],\
+#                          'c2': [0,1,0,1],\
+#                          'c3': [1,10,3,20],\
+#                          'c4': [-10,-20,-30,-40],})
+# print('Testing with c1 and [c3,c4]:')
+# print(p23.findHighestCorr('c1',['c3','c4'],simpleDF))
+# print(f'c1 has highest absolute r with {p23.findHighestCorr("c1",simpleDF.columns, simpleDF)}.')
+#
+#
+# tips = sns.load_dataset('tips')
+# print(f"Correlation coefficient between tips and size is \
+#         {tips['tip'].corr(tips['size'])}")
+# print(f"For tip, the highest correlation is \
+#         {p23.findHighestCorr('tip',['total_bill','size'],tips)}.")
