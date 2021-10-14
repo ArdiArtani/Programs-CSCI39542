@@ -3,33 +3,23 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: Section 16.1.1., stackoverflow
 """
-import random
-import numpy as np
 
-# diceSim(D1,D2,trials) that takes as input the number of sides on die 1 (D1) and die2 (D2) and the number of trials. Your function should repeatedly sum pairs of random numbers between 1 and D1 and 1 and D2 and keep track of how many times each sum occurs. The function returns a numpy array with the fraction each sum of rolls occured.
-def diceSim(D1,D2,trials):
+import pandas as pd
+# import numpy as np
+# import seaborn as sns
 
-    # create two arrays one for counting each sum pair
-    sum_occurs_ = np.zeros((D1 + D2 + 1))
-
-    # for loop from 1 to trails
-    for i in range(trials):
-        # random numbers for d1 and d2
-        rand_d1_ = random.randint(1, D1)
-        rand_d2_ = random.randint(1, D2)
-        pair_sum_ = rand_d1_ + rand_d2_
-
-        # add +1 for pair to results array
-        sum_occurs_[pair_sum_] += 1
-
-    results_ = np.zeros(D1 + D2 + 1)
-    # calculate fraction for each sum
-    for i in range(D1 + D2 + 1):
-        if(sum_occurs_[i] != 0):
-            results_[i] = (sum_occurs_[i] / trials)
-
-    return list(results_)
+# Write a function that will find the columns with highest absolute correlation coefficents in a DataFrame. Your program should take as inputs the column of interest, a list of possible correlated columns, and the DataFrame. The function should return the name and Pearson's R correlation coefficent (can be computed using the Pandas function series1.corr(series2) where series1 and series2 are Pandas Series):
 
 
+# This function takes three inputs: colName: a column name of the specified DataFrame,
+# colList: a list of column names of the specified DataFrame. It must be a list and assumed to be non-empty. Can include colName, and
+# df: a DataFrame including the specified columns.
+# The function computes the correlation coefficient between df[colName] and each column specified in colList, and returns the name and the correlation coefficient for the column from the list with the highest absolute value.
+def findHighestCorr(colName,colLst,df):
 
-# diceSim(6,6,10000)
+    cor_results_ = []
+    for col_name_ in colLst:
+        if(colName != col_name_):
+            cor_results_.append(df[colName].corr(df[col_name_]))
+
+    return cor_results_
