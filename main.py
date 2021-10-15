@@ -22,8 +22,8 @@ def findHighestCorr(colName,colLst,df):
         if(colName != col_name_):
             cor_results_.append(abs(df[colName].corr(df[col_name_])))
 
-    highest_value_ = np.amax(cor_results_)    
-    return highest_value_
+    highest_value_ = np.amax(cor_results_)
+    return (colName, highest_value_)
     # return f"{colName} has highest absolute r with {highest_value_}"
 
 
