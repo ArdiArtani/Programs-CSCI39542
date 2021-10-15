@@ -27,13 +27,13 @@ def findHighestCorr(colName,colLst,df):
 
 
 
-simpleDF = pd.DataFrame({'c1': [1,2,3,4],\
-                         'c2': [0,1,0,1],\
-                         'c3': [1,10,3,20],\
-                         'c4': [-10,-20,-30,-40],})
-print('Testing with c1 and [c3,c4]:')
-print(findHighestCorr('c1',['c3','c4'],simpleDF))
-print(f'c1 has highest absolute r with {findHighestCorr("c1",simpleDF.columns, simpleDF)}.')
+# simpleDF = pd.DataFrame({'c1': [1,2,3,4],\
+#                          'c2': [0,1,0,1],\
+#                          'c3': [1,10,3,20],\
+#                          'c4': [-10,-20,-30,-40],})
+# print('Testing with c1 and [c3,c4]:')
+# print(findHighestCorr('c1',['c3','c4'],simpleDF))
+# print(f'c1 has highest absolute r with {findHighestCorr("c1",simpleDF.columns, simpleDF)}.')
 
 # Testing with c1 and [c3,c4]:
 # ('c4', -1.0)
