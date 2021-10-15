@@ -19,8 +19,9 @@ def findHighestCorr(colName, colLst, df):
     for col_name_ in colLst:
         corr_results_.append(df[colName].corr(df[col_name_]))
 
-    highest_value_ = np.max(corr_results_)
+    highest_value_ = abs(np.max(corr_results_))
     return (colLst[corr_results_.index(highest_value_)], highest_value_)
+
 
 # simpleDF = pd.DataFrame({'c1': [1, 2, 3, 4],
 #                          'c2': [0, 1, 0, 1],
