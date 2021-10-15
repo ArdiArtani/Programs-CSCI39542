@@ -20,7 +20,8 @@ def findHighestCorr(colName,colLst,df):
     cor_results_ = []
     for col_name_ in colLst:
         if(colName != col_name_):
-            cor_results_.append(df[colName].corr(df[col_name_])).abs()
+            cor_results_.append(df[colName].corr(df[col_name_]).abs())
+
 
     return cor_results_
 
