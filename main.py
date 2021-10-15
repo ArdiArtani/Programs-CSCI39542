@@ -14,13 +14,14 @@ import numpy as np
 
 
 def findHighestCorr(colName, colLst, df):
-
-    corr_results_ = []
+    y_value_ = 0
+    index_ = ''
     for col_name_ in colLst:
-        corr_results_.append(df[colName].corr(df[col_name_]))
-
-    highest_value_ = abs(np.max(corr_results_))
-    return (colLst[corr_results_.index(highest_value_)], highest_value_)
+        x_value_ = df[colName].corr(df[col_name_])
+        if abs(x_value_) > abs(y_value_):
+            y_value_ = x_value_
+            index_ = col_name_
+    return index_, y_value_
 
 
 # simpleDF = pd.DataFrame({'c1': [1, 2, 3, 4],
