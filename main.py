@@ -20,7 +20,7 @@ def findHighestCorr(colName,colLst,df):
     corr_results_ = []
     for col_name_ in colLst:
         # if(colName != col_name_):
-        corr_results_.append(abs(df[colName].corr(df[col_name_])))
+        corr_results_.append(df[colName].corr(df[col_name_]))
 
     highest_value_ = np.amax(corr_results_)
     return (colLst[corr_results_.index(highest_value_)], highest_value_)
