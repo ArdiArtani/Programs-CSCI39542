@@ -20,15 +20,13 @@ def findHighestCorr(colName,colLst,df):
     cor_results_ = []
     for col_name_ in colLst:
         if(colName != col_name_):
-            cor_results_.append(df[colName].corr(df[col_name_]))
+            cor_results_.append(abs(df[colName].corr(df[col_name_])))
 
-    highest_value_ = np.amax(cor_results_)
-    # print(maxElement)
+    highest_value_ = np.amax(cor_results_)    
     return highest_value_
     # return f"{colName} has highest absolute r with {highest_value_}"
 
 
- # returns the name and the correlation coefficient for the column from the list with the highest absolute value.
 # simpleDF = pd.DataFrame({'c1': [1,2,3,4],\
 #                          'c2': [0,1,0,1],\
 #                          'c3': [1,10,3,20],\
@@ -36,10 +34,3 @@ def findHighestCorr(colName,colLst,df):
 # print('Testing with c1 and [c3,c4]:')
 # print(findHighestCorr('c1',['c3','c4'],simpleDF))
 # print(f'c1 has highest absolute r with {findHighestCorr("c1",simpleDF.columns, simpleDF)}.')
-#
-#
-# tips = sns.load_dataset('tips')
-# print(f"Correlation coefficient between tips and size is \
-#         {tips['tip'].corr(tips['size'])}")
-# print(f"For tip, the highest correlation is \
-#         {p23.findHighestCorr('tip',['total_bill','size'],tips)}.")
