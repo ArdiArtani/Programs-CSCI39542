@@ -24,7 +24,8 @@ def findHighestCorr(colName,colLst,df):
 
     highest_value_ = np.amax(cor_results_)
     # print(maxElement)
-    return f"{colName} has highest absolute r with {highest_value_}"
+    return highest_value_
+    # return f"{colName} has highest absolute r with {highest_value_}"
 
 
  # returns the name and the correlation coefficient for the column from the list with the highest absolute value.
