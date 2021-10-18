@@ -1,11 +1,9 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: stackoverflow.com
 """
-
 import pandas as pd
-
 
 def computeEnrollments(df):
 
@@ -17,7 +15,8 @@ def computeEnrollments(df):
     results_ = df.loc[df.NumCourses >= 3]
 
     # the second columns has the number of computer science courses currently taking (all courses that start 'csci')
-    results_['CS'] = results_['Current Courses'].str.findall('csci*').count()
+    new_csci_ = results_['Current Courses'].str.findall('csci*')
+    results_['CS'] = new_csci_.str.len()
 
     # third column with the number of other courses the student is taking.
     results_['Other'] = (results_['NumCourses'] - results_['CS'])
