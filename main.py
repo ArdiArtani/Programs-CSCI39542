@@ -10,7 +10,7 @@ Resources: n/a
 # uniqueVals: a sorted list of the unique values from the input parameter vals, and
 # mass: the fraction that each uniqueVals occurs in vals.
 def pmf(vals):
-    uniqueVals_ = set(vals)
+    uniqueVals_ = list(set(vals))
     mass_ = []
     for val_ in uniqueVals_:
         mass_.append(vals.count(val_) / len(vals))
