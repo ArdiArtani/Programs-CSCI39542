@@ -3,7 +3,7 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 # Section 16.1 (Random Variables) of the textbook has a small example of computing the probability mass function of a data set of ages was computed by hand. Write a function that will automate this process:
