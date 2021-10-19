@@ -3,7 +3,6 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
-import pandas as pd
 import matplotlib.pyplot as plt
 
 
