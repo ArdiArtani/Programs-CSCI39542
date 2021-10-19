@@ -3,7 +3,7 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 # Section 16.1 (Random Variables) of the textbook has a small example of computing the probability mass function of a data set of ages was computed by hand. Write a function that will automate this process:
 
@@ -17,12 +17,12 @@ def pmf(vals):
 
     return uniqueVals_, mass_
 
-x, y = pmf([50,50,52,54])
-print(f'The values are: {x}')
-print(f'The pmf is: {y}')
-print(f'The sum of the pmf is: {sum(y)}.')
-plt.bar(x,y)
-plt.show()
+# x, y = pmf([50,50,52,54])
+# print(f'The values are: {x}')
+# print(f'The pmf is: {y}')
+# print(f'The sum of the pmf is: {sum(y)}.')
+# plt.bar(x,y)
+# plt.show()
 
 # The values are: (50, 52, 54)
 # The pmf is: (0.5, 0.25, 0.25)
