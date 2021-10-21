@@ -7,6 +7,8 @@ import seaborn as sns
 import pandas as pd
 
 # tripTime(start,end): This function takes two variables of type datetime and returns the difference between them.
+
+
 def tripTime(start, end):
     # convert date to datatime
     start_dt1_ = pd.to_datetime(start)
