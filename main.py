@@ -14,7 +14,7 @@ def compute_r_line(xes, yes):
     sd_y = np.std(yes)
 
     # Compute the correlation, r, of the xes and yes.
-    r = pearsonr(sd_x, sd_y)[0]
+    r, _ = pearsonr(xes,yes)
 
     # Compute the slope, m, as m = r*sd_y/sd_x.
     m = r * sd_y / sd_x
