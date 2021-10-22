@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: geeksforgeeks.org
+Resources: machinelearningmastery.com
 """
 import pandas as pd
 import numpy as np
