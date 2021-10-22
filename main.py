@@ -25,10 +25,10 @@ def compute_r_line(xes, yes):
     # Return m and b.
     return m, b
 
-s1 = [1,2,3,4,5,6,7,8,9,10]
-s2 = [0,1,1,2,2,3,3,4,4,5,]
-m, b = compute_r_line(s1,s2)
-print(m,b)
+# s1 = [1,2,3,4,5,6,7,8,9,10]
+# s2 = [0,1,1,2,2,3,3,4,4,5,]
+# m, b = compute_r_line(s1,s2)
+# print(m,b)
 # xes = np.array([0,10])
 # yes = m*xes + b
 # plt.scatter(s1,s2)
