@@ -5,33 +5,21 @@ Resources: machinelearningmastery.com
 """
 import pandas as pd
 import numpy as np
-from scipy.stats import pearsonr
 
-# Write a function, compute_r_line(), that takes two iterables of numeric values representing the independent variable (xes) and the dependent variable (yes) and computes the slope and y-intercept of the linear regression line using ordinary least squares. See DS 8: Chapter 15 The pseudocode for this:
-def compute_r_line(xes, yes):
-    # Compute the standard deviation of the xes and yes. Call these sd_x and sd_y.
-    sd_x = np.std(xes)
-    sd_y = np.std(yes)
+# In Program 24, we wrote a function that counted courses that students are currently taking. For this program, write a function that takes a DataFrame and returns a sorted list of the computer science courses taken. Each course should occur once in the list, no matter how often it occurs in the list of courses taken by the students
 
-    # Compute the correlation, r, of the xes and yes.
-    r, _ = pearsonr(xes,yes)
+# csCourses(df): This function takes as input a data frame, df, that contains a column Current Courses. It returns a sorted list of unique strings. Each string is a computer science course (i.e. starts with csci) that occurs in some entry of df['Current Courses'].
+def csCourses(df):
+    results_ = df.loc[:,'Current Courses']
+    csci_ = []
+    for value_ in results_:
+        courses_ = value_.split()
+        for course_ in courses_:
+            if(course_.startswith('csci')):
+                csci_.append(course_)
 
-    # Compute the slope, m, as m = r*sd_y/sd_x.
-    m = r * sd_y / sd_x
+    results_ = sorted(np.unique(csci_))
+    return results_
 
-    # Compute the y-intercept, b, as b = yes[0] - m * xes[0]
-    b = yes[0] - m * xes[0]
-
-    # Return m and b.
-    return m, b
-
-# s1 = [1,2,3,4,5,6,7,8,9,10]
-# s2 = [0,1,1,2,2,3,3,4,4,5,]
-# m, b = compute_r_line(s1,s2)
-# print(m,b)
-# xes = np.array([0,10])
-# yes = m*xes + b
-# plt.scatter(s1,s2)
-# plt.plot(xes,yes)
-# plt.title(f'Regression line with m = {m:{4}.{2}} and y-intercept = {b:{4}.{2}}')
-# plt.show()
+# CS courses:
+#  ['csci150', 'csci160', 'csci235', 'csci265', 'csci335', 'csci39542', 'csci49362', 'csci499']
