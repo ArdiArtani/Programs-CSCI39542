@@ -4,6 +4,7 @@ Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
 import pandas as pd
+import seaborn as sns
 from sklearn import linear_model
 
 # the name of a CSV file that will be loaded into a dataframe,
