@@ -30,6 +30,6 @@ pre_var2_ = input('Enter value for second variable for prediction ')
 # pre_var_ = 100
 # pre_var2_ = 12.0
 
-regr = csv_file_.LinearRegression()
-regr.fit(mpg[[ind_var_, ind_var2_]], mpg[name_var_])
+regr = linear_model.LinearRegression()
+regr.fit(csv_file_[[ind_var_, ind_var2_]], csv_file_[name_var_])
 print (f'Predicted mpg: {regr.predict([[pre_var_,pre_var2_]])[0]}')
