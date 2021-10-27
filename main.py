@@ -4,7 +4,7 @@ Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
 import pandas as pd
-import seaborn as sns
+# import seaborn as sns
 
 # Write a function that computes the range of values a column takes (i.e. the difference between the maximum and minimum values). The column contains numeric values, unless the flag datetime is set to True. If the datetime flag is true, the input column contains strings representing datetime objects ( overview of datetime in Pandas ) and the function should return the range in seconds.
 def colRange(df, colName, datetime=False):
