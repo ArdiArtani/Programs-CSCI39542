@@ -5,32 +5,22 @@ Resources: n/a
 """
 import pandas as pd
 import seaborn as sns
-from sklearn import linear_model
 
-# the name of a CSV file that will be loaded into a dataframe,
-# the name of a column to be used as an independent variable in the multiple linear regression,
-# the name of second column to be used as another independent variable in the multiple linear regression,
-# the name of a column to be used as an dependent variable in the multiple linear regression (i.e. what is being predicted),
-# a value for the first variable, and
-# a value for the second variable.
+# Write a function that computes the range of values a column takes (i.e. the difference between the maximum and minimum values). The column contains numeric values, unless the flag datetime is set to True. If the datetime flag is true, the input column contains strings representing datetime objects ( overview of datetime in Pandas ) and the function should return the range in seconds.
+def colRange(df, colName, datetime=False):
 
-# get file names:
-csv_file_ = input('Enter name of CSV: ')
-ind_var_ = input('Enter name of first independent variable: ')
-ind_var2_ = input('Enter name of second independent variable: ')
-name_var_ = input('Enter name of the dependent variable:')
-pre_var_ = input('Enter value for first variable for prediction ')
-pre_var2_ = input('Enter value for second variable for prediction ')
+    if(datetime == False):
+        return (df[colName].max() - df[colName].min())
+    else:
+        df['date'] = pd.to_datetime(df[colName])
+        results_ = (df['date'].max() - df['date'].min()).total_seconds()
+        return results_
 
-# Your program should build a linear model based on the dataframe and two independent variables that will predict the value of the dependent variable. Your program should then predict the dependent variable, based on the two inputted independent variables.
 
-# csv_file_ = "mpg.csv"
-# ind_var_ = "displacement"
-# ind_var2_ = "acceleration"
-# name_var_ = "mpq"
-# pre_var_ = 100
-# pre_var2_ = 12.0
 
-regr = linear_model.LinearRegression()
-regr.fit(csv_file_[[ind_var_, ind_var2_]], csv_file_[name_var_])
-print (f'Predicted mpg: {regr.predict([[pre_var_,pre_var2_]])[0]}')
+# taxis = sns.load_dataset('taxis').dropna().loc[:10]
+# print(f"Testing colRange(taxis,'distance'): {colRange(taxis,'distance')}")
+# print(f"Testing colRange(taxis,'dropoff',datetime=True): {colRange(taxis,'dropoff',datetime=True)}")
+
+# Testing colRange(taxis,'distance'): 7.21
+# Testing colRange(taxis,'dropoff',datetime=True): 2236694.0
