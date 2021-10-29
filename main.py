@@ -4,23 +4,26 @@ Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
 import pandas as pd
-# import seaborn as sns
+import numpy as np
 
-# Write a function that computes the range of values a column takes (i.e. the difference between the maximum and minimum values). The column contains numeric values, unless the flag datetime is set to True. If the datetime flag is true, the input column contains strings representing datetime objects ( overview of datetime in Pandas ) and the function should return the range in seconds.
-def colRange(df, colName, datetime=False):
+# df: a DataFrame that including the specified column.
+# colName: a column name of the specified DataFrame,
+# k: the size of the sample. It has a default value of 10.
+# n: the number of samples. It has a default value of 1000.
+# It takes the sample size k and the numbers of samples, of n, a DataFrame, df, and and generates n samples of size k, computes the sample mean of each, and returns a numpy array of those means.
+def sampleMeans(df, colName, k=10, n=1000):
 
-    if(datetime == False):
-        return (df[colName].max() - df[colName].min())
-    else:
-        df['date'] = pd.to_datetime(df[colName])
-        results_ = (df['date'].max() - df['date'].min()).total_seconds()
-        return results_
+    results_ = []
+    for i in range(n):
+        results_.append(df[colName].sample(n = k).mean())
 
+    return list(results_)
 
+# nd = [np.random.normal() for i in range(1000)]
+# ed = [np.random.exponential() for i in range(1000)]
+# df = pd.DataFrame({ "nd" : nd, "ed" : ed})
+# print(sampleMeans(df, 'nd', k = 5, n=5))
+# print(sampleMeans(df, 'nd', k = 10, n=5))
 
-# taxis = sns.load_dataset('taxis').dropna().loc[:10]
-# print(f"Testing colRange(taxis,'distance'): {colRange(taxis,'distance')}")
-# print(f"Testing colRange(taxis,'dropoff',datetime=True): {colRange(taxis,'dropoff',datetime=True)}")
-
-# Testing colRange(taxis,'distance'): 7.21
-# Testing colRange(taxis,'dropoff',datetime=True): 2236694.0
+# [ 0.18006227 -0.02046562  0.13301251  0.52114451  0.47197969]
+# [ 0.06028354 -0.48566047  0.02343676 -0.28361692  0.25259547]
