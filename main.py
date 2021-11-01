@@ -15,11 +15,9 @@ def attendCorr(df):
     # date_ = pd.to_datetime(df['Date'])
     # date_ = date_.dt.dayofweek
     df['Date'] = pd.to_datetime(df['Date'].apply(str))
-    # df['Date'] = df['Date'].dt.dayofweek
+    df['Date'] = df['Date'].dt.dayofweek
     df['Attending'] = (df['Present'] / df['Enrolled']) * 100
-
     r_, _ = pearsonr(df['Date'], df['Attending'])
-
     return r_
 
 
