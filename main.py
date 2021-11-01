@@ -6,24 +6,25 @@ Resources: n/a
 import pandas as pd
 import numpy as np
 
-# df: a DataFrame that including the specified column.
-# colName: a column name of the specified DataFrame,
-# k: the size of the sample. It has a default value of 10.
-# n: the number of samples. It has a default value of 1000.
-# It takes the sample size k and the numbers of samples, of n, a DataFrame, df, and and generates n samples of size k, computes the sample mean of each, and returns a numpy array of those means.
-def sampleMeans(df, colName, k=10, n=1000):
+# In Lectures #14 and #15, we discussed the hypothesis that NYC public schools have lower attendance on Fridays. For this program, write a function that takes a DataFrame of school attendance records (following the format from NYC OpenData) and returns the correlation coefficent between the day of the week and daily attendance (computed as a percentage of students present of those enrolled at the school).
 
-    results_ = []
-    for i in range(n):
-        results_.append(df[colName].sample(n = k).mean())
+# This function takes a DataFrame df, with columns School DBN, Date, Enrolled, Absent, and Present.
+# The function computes the attendance as a percentage of students present over students enrolled, and calculates the day of the week for each date. The function returns the correlation coefficient of the two.
+def attendCorr(df):
+    # date_ = pd.to_datetime(df['Date'])
+    # date_ = date_.dt.dayofweek
+    df['Date'] = pd.to_datetime(df['Date'].apply(str))
+    # df['Date'] = df['Date'].dt.dayofweek
+    df['% Attending'] = (df['Present'] / df['Enrolled']) * 100
 
-    return list(results_)
+    return df
 
-# nd = [np.random.normal() for i in range(1000)]
-# ed = [np.random.exponential() for i in range(1000)]
-# df = pd.DataFrame({ "nd" : nd, "ed" : ed})
-# print(sampleMeans(df, 'nd', k = 5, n=5))
-# print(sampleMeans(df, 'nd', k = 10, n=5))
 
-# [ 0.18006227 -0.02046562  0.13301251  0.52114451  0.47197969]
-# [ 0.06028354 -0.48566047  0.02343676 -0.28361692  0.25259547]
+# When read in from the CSV, the columns may be stored as a string. Cast as a datetime object (e.g. pd.to_datetime()), to use the functionality. You may need to specify the format, since the DOE stored dates as YYYYMMDD (see Panda Docs).
+
+# For datetime objects, you can access properties such as day of the week using dt prefix, similar to .str similar to .str to use string methods and properties (e.g. dt.dayofweek). See the Python Docs: date time functionality for more details.
+
+# In Lecture #15, we introduced several ways to add features to datasets to aid in the analysis. For this program, add a new column that indicates the days of the week: 0 for Monday, 1 for Tuesday, ... 6 for Sunday (a useful function for this is: dt.dayofweek)).
+
+# df = pd.read_csv('dailyAttendanceManHunt2018.csv')
+# print(attendCorr(df))
