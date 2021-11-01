@@ -5,6 +5,7 @@ Resources: n/a
 """
 import pandas as pd
 import numpy as np
+from scipy.stats import pearsonr
 
 # In Lectures #14 and #15, we discussed the hypothesis that NYC public schools have lower attendance on Fridays. For this program, write a function that takes a DataFrame of school attendance records (following the format from NYC OpenData) and returns the correlation coefficent between the day of the week and daily attendance (computed as a percentage of students present of those enrolled at the school).
 
@@ -15,9 +16,11 @@ def attendCorr(df):
     # date_ = date_.dt.dayofweek
     df['Date'] = pd.to_datetime(df['Date'].apply(str))
     # df['Date'] = df['Date'].dt.dayofweek
-    df['% Attending'] = (df['Present'] / df['Enrolled']) * 100
+    df['Attending'] = (df['Present'] / df['Enrolled']) * 100
 
-    return df
+    r_, _ = pearsonr(df['Date'], df['Attending'])
+
+    return r_
 
 
 # When read in from the CSV, the columns may be stored as a string. Cast as a datetime object (e.g. pd.to_datetime()), to use the functionality. You may need to specify the format, since the DOE stored dates as YYYYMMDD (see Panda Docs).
