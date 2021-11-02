@@ -5,27 +5,27 @@ Resources: n/a
 """
 import pandas as pd
 import numpy as np
-from scipy.stats import pearsonr
+import scipy.stats as st
 
-# In Lectures #14 and #15, we discussed the hypothesis that NYC public schools have lower attendance on Fridays. For this program, write a function that takes a DataFrame of school attendance records (following the format from NYC OpenData) and returns the correlation coefficent between the day of the week and daily attendance (computed as a percentage of students present of those enrolled at the school).
+# alpha: the fraction of the distribution contained in the interval (as in scipy.stats.t.interval()). It has a default value of 95.
+# mu: the mean of the normal distribution sampled. It has a default value of 0.
+# sigma: the standard deviation of the normal distribution sampled. It has a default value of 1.
+# size: the size of the samples. It has a default value of 10.
+# trials: the number of samples. It has a default value of 100.
 
-# This function takes a DataFrame df, with columns School DBN, Date, Enrolled, Absent, and Present.
-# The function computes the attendance as a percentage of students present over students enrolled, and calculates the day of the week for each date. The function returns the correlation coefficient of the two.
-def attendCorr(df):
-    # date_ = pd.to_datetime(df['Date'])
-    # date_ = date_.dt.dayofweek
-    df['Date'] = pd.to_datetime(df['Date'].apply(str))
-    df['Date'] = df['Date'].dt.dayofweek
-    df['Attending'] = (df['Present'] / df['Enrolled']) * 100
-    r_, _ = pearsonr(df['Date'], df['Attending'])
-    return r_
+# This function returns:
+# A list of intervals, stored as tuples of their lower and upper values (of length trials), and
+# A list of length trials containing the percentage of successful predictions after each trial. That is, the ith entry has the percent of the first i trials for which the true mean (mu) is in the confidence interval computed for the sample.
+def ciRuns(alpha = 0.95, mu = 0, sigma = 1, size = 10, trials = 100):
+    sampData_ = np.random.normal(mu, sigma, size)
+    interval_ = st.t.interval(alpha,len(sampData_)-1, loc=np.mean(sampData_),scale=st.sem(sampData_))
+
+    # for trial in range(trials):
+    #     print(trial)
+
+    return interval_, 0
 
 
-# When read in from the CSV, the columns may be stored as a string. Cast as a datetime object (e.g. pd.to_datetime()), to use the functionality. You may need to specify the format, since the DOE stored dates as YYYYMMDD (see Panda Docs).
-
-# For datetime objects, you can access properties such as day of the week using dt prefix, similar to .str similar to .str to use string methods and properties (e.g. dt.dayofweek). See the Python Docs: date time functionality for more details.
-
-# In Lecture #15, we introduced several ways to add features to datasets to aid in the analysis. For this program, add a new column that indicates the days of the week: 0 for Monday, 1 for Tuesday, ... 6 for Sunday (a useful function for this is: dt.dayofweek)).
-
-# df = pd.read_csv('dailyAttendanceManHunt2018.csv')
-# print(attendCorr(df))
+# intervals, successes = ciRuns(trials = 20)
+# print(f"intervals: {intervals}")
+# print(f"successes: {successes}")
