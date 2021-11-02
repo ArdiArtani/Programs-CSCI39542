@@ -17,13 +17,18 @@ import scipy.stats as st
 # A list of intervals, stored as tuples of their lower and upper values (of length trials), and
 # A list of length trials containing the percentage of successful predictions after each trial. That is, the ith entry has the percent of the first i trials for which the true mean (mu) is in the confidence interval computed for the sample.
 def ciRuns(alpha = 0.95, mu = 0, sigma = 1, size = 10, trials = 100):
-    sampData_ = np.random.normal(mu, sigma, size)
-    interval_ = st.t.interval(alpha,len(sampData_)-1, loc=np.mean(sampData_),scale=st.sem(sampData_))
 
-    # for trial in range(trials):
-    #     print(trial)
+    interval_ = []
+    successes_ = []
+    counter_ = 0
+    for trial in range(trials):
+        sampData_ = np.random.normal(mu, sigma, size)
+        interval_.append(st.t.interval(alpha,len(sampData_)-1, loc=np.mean(sampData_),scale=st.sem(sampData_)))
+        if(interval_[trial][0] < mu < interval_[trial][1]):
+            counter_ += 1
+        successes_.append(counter_/trials)
 
-    return interval_, 0
+    return interval_, successes_
 
 
 # intervals, successes = ciRuns(trials = 20)
