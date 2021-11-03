@@ -5,32 +5,28 @@ Resources: n/a
 """
 import pandas as pd
 import numpy as np
-import scipy.stats as st
+# import scipy.stats as st
 
-# alpha: the fraction of the distribution contained in the interval (as in scipy.stats.t.interval()). It has a default value of 95.
-# mu: the mean of the normal distribution sampled. It has a default value of 0.
-# sigma: the standard deviation of the normal distribution sampled. It has a default value of 1.
-# size: the size of the samples. It has a default value of 10.
-# trials: the number of samples. It has a default value of 100.
+# fitPoly(df,xes,yes,epsilon=0.01): This function takes four inputs:
+# df: a DataFrame that including the specified columns.
+# xes: a column name of the specified DataFrame,
+# yes: a column name of the specified DataFrame.
+# epsilon: the size of the sample. It has a default value of 0.01.
+# It returns the smallest intger degree >= 1 for which the model yields a MSE of < the specified epsilon.
 
-# This function returns:
-# A list of intervals, stored as tuples of their lower and upper values (of length trials), and
-# A list of length trials containing the percentage of successful predictions after each trial. That is, the ith entry has the percent of the first i trials for which the true mean (mu) is in the confidence interval computed for the sample.
-def ciRuns(alpha = 0.95, mu = 0, sigma = 1, size = 10, trials = 100):
+# Following the textbook code demostration in Lecture 16, write a function that takes values of an independent variable and corresponding values of a dependent varaible, and fits polynomial regression models of increasing degree until the MSE falls below error.
+def fitPoly(df,xes,yes,epsilon=0.01):
+    # df[xes]
+    # df[yes]
+    deg_ = 1
 
-    interval_ = []
-    successes_ = []
-    counter_ = 0
-    for trial in range(trials):
-        sampData_ = np.random.normal(mu, sigma, size)
-        interval_.append(st.t.interval(alpha,len(sampData_)-1, loc=np.mean(sampData_),scale=st.sem(sampData_)))
-        if(interval_[trial][0] < mu < interval_[trial][1]):
-            counter_ += 1
-        successes_.append(counter_/trials)
-
-    return interval_, successes_
+    return deg_
 
 
-# intervals, successes = ciRuns(trials = 20)
-# print(f"intervals: {intervals}")
-# print(f"successes: {successes}")
+# df = pd.read_csv('icecream.csv')
+# print(f'Starting df:\n {df}')
+# eps = 0.5
+# deg = fitPoly(df,'sweetness','overall',epsilon=eps)
+# print(f'For epsilon = {eps}, poly has degree {deg}.')
+
+# For epsilon = 0.5, poly has degree 1.
