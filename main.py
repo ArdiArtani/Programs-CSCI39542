@@ -1,26 +1,36 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: 20.2. Predicting Ice Cream Ratings¶
 """
 import pandas as pd
 import numpy as np
-# import scipy.stats as st
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
 
-# fitPoly(df,xes,yes,epsilon=0.01): This function takes four inputs:
-# df: a DataFrame that including the specified columns.
-# xes: a column name of the specified DataFrame,
-# yes: a column name of the specified DataFrame.
-# epsilon: the size of the sample. It has a default value of 0.01.
 # It returns the smallest intger degree >= 1 for which the model yields a MSE of < the specified epsilon.
-
 # Following the textbook code demostration in Lecture 16, write a function that takes values of an independent variable and corresponding values of a dependent varaible, and fits polynomial regression models of increasing degree until the MSE falls below error.
-def fitPoly(df,xes,yes,epsilon=0.01):
-    # df[xes]
-    # df[yes]
-    deg_ = 1
+def mse_cost(pred, y):
+    return np.mean((pred - y) ** 2)
 
-    return deg_
+def fitPoly(df,xes,yes,epsilon=0.01):
+
+
+    degree_ = 1
+    xes_ = df[xes].values.reshape(-1,1)
+    yes_ = df[yes].values.reshape(-1,1)
+
+    for i in range(len(df)):
+        x_ = PolynomialFeatures(degree=2).fit_transform(xes_)
+        clf_ten_ = LinearRegression(fit_intercept=False).fit(x_, yes_)
+        pred_ten = clf_ten_.predict(x_)
+        mse_ = mse_cost(pred_ten, yes_)
+
+        if(mse_ < epsilon):
+            return degree_
+        else:
+            return degree_ + 1
+
 
 
 # df = pd.read_csv('icecream.csv')
