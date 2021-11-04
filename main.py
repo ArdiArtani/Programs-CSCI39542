@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: 20.2. Predicting Ice Cream Ratings¶
+Resources: 20.2. Predicting Ice Cream Ratings
 """
 import pandas as pd
 import numpy as np
@@ -18,8 +18,8 @@ def fitPoly(df,xes,yes,epsilon=0.01):
     xes_ = df[xes].values.reshape(-1,1)
     yes_ = df[yes].values.reshape(-1,1)
 
-    for i in range(len(df)-2):
-        x_ = PolynomialFeatures(degree=2).fit_transform(xes_)
+    for i in range(len(df)):
+        x_ = PolynomialFeatures(degree=degree_).fit_transform(xes_)
         clf_ten_ = LinearRegression(fit_intercept=False).fit(x_, yes_)
         pred_ten = clf_ten_.predict(x_)
         mse_ = mse_cost(pred_ten, yes_)
@@ -28,16 +28,15 @@ def fitPoly(df,xes,yes,epsilon=0.01):
 
     return degree_
 
-
 # df = pd.read_csv('icecream.csv')
 # eps = 0.5
 # deg = fitPoly(df,'sweetness','overall',epsilon=eps)
 # print(f'For epsilon = {eps}, poly has degree {deg}.')
-#
+# #
 # eps= 0.1
 # deg = fitPoly(df,'sweetness','overall',epsilon=eps)
 # print(f'For epsilon = {eps}, poly has degree: {deg}.')
-#
+# #
 # eps= 0.01
 # deg = fitPoly(df,'sweetness','overall')
 # print(f'For epsilon = {eps}, poly has degree: {deg}.')
