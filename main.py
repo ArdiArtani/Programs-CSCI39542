@@ -24,11 +24,9 @@ def fitPoly(df,xes,yes,epsilon=0.01):
         pred_ten = clf_ten_.predict(x_)
         mse_ = mse_cost(pred_ten, yes_)
 
-        if(mse_ < epsilon):
-            return degree_
-        else:
+        if(mse_ > epsilon):
             degree_ += 1
-
+            
     return degree_
 
 
