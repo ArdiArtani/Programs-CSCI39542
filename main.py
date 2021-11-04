@@ -18,22 +18,26 @@ def fitPoly(df,xes,yes,epsilon=0.01):
     xes_ = df[xes].values.reshape(-1,1)
     yes_ = df[yes].values.reshape(-1,1)
 
-    for i in range(len(df)):
+    for i in range(len(df)-2):
         x_ = PolynomialFeatures(degree=2).fit_transform(xes_)
         clf_ten_ = LinearRegression(fit_intercept=False).fit(x_, yes_)
         pred_ten = clf_ten_.predict(x_)
         mse_ = mse_cost(pred_ten, yes_)
-
         if(mse_ > epsilon):
             degree_ += 1
-            
+
     return degree_
 
 
 # df = pd.read_csv('icecream.csv')
-# print(f'Starting df:\n {df}')
 # eps = 0.5
 # deg = fitPoly(df,'sweetness','overall',epsilon=eps)
 # print(f'For epsilon = {eps}, poly has degree {deg}.')
-
-# For epsilon = 0.5, poly has degree 1.
+#
+# eps= 0.1
+# deg = fitPoly(df,'sweetness','overall',epsilon=eps)
+# print(f'For epsilon = {eps}, poly has degree: {deg}.')
+#
+# eps= 0.01
+# deg = fitPoly(df,'sweetness','overall')
+# print(f'For epsilon = {eps}, poly has degree: {deg}.')
