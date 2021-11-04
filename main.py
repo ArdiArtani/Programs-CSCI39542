@@ -1,12 +1,10 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: 20.2. Predicting Ice Cream Ratings
+Resources: n/a
 """
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
 
 # addIndicator(df, colName = "Registration State", indicator = "NY"): This function takes three inputs:
 # df: a DataFrame that including the specified column.
