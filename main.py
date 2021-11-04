@@ -8,35 +8,20 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 
-# It returns the smallest intger degree >= 1 for which the model yields a MSE of < the specified epsilon.
-# Following the textbook code demostration in Lecture 16, write a function that takes values of an independent variable and corresponding values of a dependent varaible, and fits polynomial regression models of increasing degree until the MSE falls below error.
-def mse_cost(pred, y):
-    return np.mean((pred - y) ** 2)
+# addIndicator(df, colName = "Registration State", indicator = "NY"): This function takes three inputs:
+# df: a DataFrame that including the specified column.
+# colName: a column name of the specified DataFrame. The default value is Registration State.
+# indicator: the value used for the indicator as well as the new column created. The default value is NY.
 
-def fitPoly(df,xes,yes,epsilon=0.01):
-    degree_ = 1
-    xes_ = df[xes].values.reshape(-1,1)
-    yes_ = df[yes].values.reshape(-1,1)
+# The function should add a new column, indicator to the DataFrame that takes values 1 when indicator is in df[colName] and 0 if it has a different value and nanotherwise.
+def addIndicator(df, colName = "Registration State", indicator = "NY"):
+    df[indicator] = np.where(df[colName] != indicator, 1, 0)
+    return df
 
-    for i in range(len(df)):
-        x_ = PolynomialFeatures(degree=degree_).fit_transform(xes_)
-        clf_ten_ = LinearRegression(fit_intercept=False).fit(x_, yes_)
-        pred_ten = clf_ten_.predict(x_)
-        mse_ = mse_cost(pred_ten, yes_)
-        if(mse_ > epsilon):
-            degree_ += 1
 
-    return degree_
-
-# df = pd.read_csv('icecream.csv')
-# eps = 0.5
-# deg = fitPoly(df,'sweetness','overall',epsilon=eps)
-# print(f'For epsilon = {eps}, poly has degree {deg}.')
-# #
-# eps= 0.1
-# deg = fitPoly(df,'sweetness','overall',epsilon=eps)
-# print(f'For epsilon = {eps}, poly has degree: {deg}.')
-# #
-# eps= 0.01
-# deg = fitPoly(df,'sweetness','overall')
-# print(f'For epsilon = {eps}, poly has degree: {deg}.')
+# df = pd.read_csv('Parking_Violations_Issued_Precinct_19_2021.csv',low_memory=False)
+# df['Issue Date'] = pd.to_datetime(df['Issue Date'])
+# dff = addIndicator(df)
+# print(dff)
+# print(f'Of the {len(dff)} violations for first half of 2021 for Upper East Side (PD District 19),\n \
+#       {len(dff[dff.NY == 1])} are for cars registered in New York.')
