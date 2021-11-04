@@ -29,7 +29,7 @@ def fitPoly(df,xes,yes,epsilon=0.01):
         if(mse_ < epsilon):
             return degree_
         else:
-            return degree_ + 1
+            degree_ += 1
 
 
 
