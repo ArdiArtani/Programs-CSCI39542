@@ -14,8 +14,6 @@ def mse_cost(pred, y):
     return np.mean((pred - y) ** 2)
 
 def fitPoly(df,xes,yes,epsilon=0.01):
-
-
     degree_ = 1
     xes_ = df[xes].values.reshape(-1,1)
     yes_ = df[yes].values.reshape(-1,1)
@@ -31,6 +29,7 @@ def fitPoly(df,xes,yes,epsilon=0.01):
         else:
             degree_ += 1
 
+    return degree_
 
 
 # df = pd.read_csv('icecream.csv')
