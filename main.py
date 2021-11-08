@@ -1,25 +1,33 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: stackoveflow
 """
 import pandas as pd
 import numpy as np
 
-# addIndicator(df, colName = "Registration State", indicator = "NY"): This function takes three inputs:
-# df: a DataFrame that including the specified column.
-# colName: a column name of the specified DataFrame. The default value is Registration State.
-# indicator: the value used for the indicator as well as the new column created. The default value is NY.
+# Write a program that takes a DataFrame of restaurants and returns a DataFrame with each Restaurant occurring exactly once and two new columns: Number_Submissions which contains the number of times that restaurant occurs in any entry (smallest value is 1) and Locations, a list consisting of the unique location addresses.
 
-# The function should add a new column, indicator to the DataFrame that takes values 1 when indicator is in df[colName] and 0 if it has a different value and nanotherwise.
-def addIndicator(df, colName = "Registration State", indicator = "NY"):
-    df[indicator] = np.where(df[colName] != indicator, 1, 0)
-    return df
+# dba: where dba is the input parameter above. This column holds the establishment names and is the column to which groupby is applied.
+# Num_Submissions: a column that contains a count for each establishment name.
+# Locations: a column name that contains for each establishment, a list of unique locations.
+def restaurantLocs(df, dba="Restaurant Name", location="Business Address"):
+    dba_ = []
+    num_submissions_ = []
+    locations_ = []
+
+    new_df_ = df.groupby(dba)
+    for rname_ , data_ in new_df_:
+      dba_.append(rname_)
+      num_submissions_.append(data_.shape[0])
+      locations_.append(list(set(data_[location])))
+
+    data = {"dba" : dba_, "Num_Submissions" : num_submissions_, "Locations" : locations_}
+    results_ = pd.DataFrame(data)
+    return results_
 
 
-# df = pd.read_csv('Parking_Violations_Issued_Precinct_19_2021.csv',low_memory=False)
-# df['Issue Date'] = pd.to_datetime(df['Issue Date'])
-# dff = addIndicator(df)
-# print(dff)
-# print(f'Of the {len(dff)} violations for first half of 2021 for Upper East Side (PD District 19),\n \
-#       {len(dff[dff.NY == 1])} are for cars registered in New York.')
+# df = pd.read_csv('applications_coffee_truncated.csv')
+# print(df)
+# newDF = restaurantLocs(df)
+# print(newDF)
