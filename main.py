@@ -1,33 +1,43 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: stackoveflow
+Resources: n/a
 """
-import pandas as pd
-import numpy as np
 
-# Write a program that takes a DataFrame of restaurants and returns a DataFrame with each Restaurant occurring exactly once and two new columns: Number_Submissions which contains the number of times that restaurant occurs in any entry (smallest value is 1) and Locations, a list consisting of the unique location addresses.
+# cleanReg(reg): If reg is coded as passenger 'PAS' or commercial 'COM', return those values. Otherwise, return 'OTHER'.
+def cleanReg(reg):
+    if(reg == 'PAS' or reg == 'COM'):
+        return reg
+    else:
+        return 'OTHER'
 
-# dba: where dba is the input parameter above. This column holds the establishment names and is the column to which groupby is applied.
-# Num_Submissions: a column that contains a count for each establishment name.
-# Locations: a column name that contains for each establishment, a list of unique locations.
-def restaurantLocs(df, dba="Restaurant Name", location="Business Address"):
-    dba_ = []
-    num_submissions_ = []
-    locations_ = []
+# Return the following for the values of c:
+def cleanColor(c):
+    result_ = ''
+    # 'GRAY': for GY, GRAY, GREY,SILVE, SIL, SL,
+    if (c == 'GY') or (c == 'GRAY') or (c == 'GREY') or (c == 'SILVE') or (c == 'SIL') or (c == 'SL'):
+        result_ = 'GRAY'
+    # 'WHITE': for WH, WHITE,
+    elif (c == 'WH') or (c == 'WHITE'):
+        result_ = 'WHITE'
+    # 'BLACK': for BK, BLACK, BL,
+    elif (c == 'BK') or (c == 'BLACK') or (c == 'BL'):
+        result_ = 'BLACK'
+    # 'BLUE': for BLUE,
+    elif (c == 'BLUE'):
+        result_ = 'BLUE'
+    # 'RED': for RED, RD,
+    elif (c == 'RED') or (c == 'RD'):
+        result_ = 'RED'
+    # 'GREEN': for GR, GREEN,
+    elif (c == 'GR') or (c == 'GREEN'):
+        result_ = 'GREEN'
+    # 'BROWN': for BROWN, TAN,
+    elif (c == 'BROWN') or (c == 'TAN'):
+        result_ = 'BROWN'
+    # 'BROWN': for BROWN, TAN,
+    # Otherwise, return 'OTHER'.
+    else:
+        result_ = 'OTHER'
 
-    new_df_ = df.groupby(dba)
-    for rname_ , data_ in new_df_:
-      dba_.append(rname_)
-      num_submissions_.append(data_.shape[0])
-      locations_.append(list(set(data_[location])))
-
-    data = {"dba" : dba_, "Num_Submissions" : num_submissions_, "Locations" : locations_}
-    results_ = pd.DataFrame(data)
-    return results_
-
-
-# df = pd.read_csv('applications_coffee_truncated.csv')
-# print(df)
-# newDF = restaurantLocs(df)
-# print(newDF)
+    return result_
