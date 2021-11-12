@@ -1,28 +1,52 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: Lecture 19 Slides, textbook.ds100.org
+Resources: n/a
 """
-#Import datasets, classifiers and performance metrics:
-from sklearn import datasets, svm, metrics
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-#Using the digits data set from sklearn:
-from sklearn import datasets
+import pandas as pd
+import numpy as np
 
-# data: a numpy array that includes rows of equal size flattend arrays,
-# target a numpy array that takes values 0 or 1 corresponding to the rows of data.
-# test_size: the size of the test set created when the data is divided into test and training sets with train_test_split. The default value is 0.25.
-# random_state: the random seed used when the data is divided into test and training sets with train_test_split. The default value is 21.
-# The function returns the Area Under the Curve (AUC) computed by sklearn.metrics.roc_auc_score as well as the classifier built.
-def binary_digit_clf(data, target, test_size = 0.25, random_state = 21):
-    clf = LogisticRegression()
-    x_, x_test, y_, y_test = train_test_split(data, target, random_state = random_state, test_size = test_size)
-    clf.fit(x_,y_)
-    y_predict_ = clf.predict(x_test)
-    confuse_mx = metrics.confusion_matrix(y_test, y_predict_, labels=[1,0])
-    return confuse_mx
+# Building on Program 24 and Program 28, write a function, byCourses(), that takes a DataFrame that contains students' names, number of credits completed, and current courses (a string with the course names separated by ' '), and returns a DataFrame that
+# The column indices are the names of the computer science courses only, and
+# The one column is NumEnrolled, the total number of students enrolled.
+# No other rows or columns should be included in the DataFrame.
+def byCourses(df):
+    results_ = df.loc[:,'Current Courses']
+    csci_ = []
+    for value_ in results_:
+        courses_ = value_.split()
+        for course_ in courses_:
+            if(course_.startswith('csci')):
+                csci_.append(course_)
+                # csci_[course_] +=1
+
+    results_ = sorted(np.unique(csci_))
+
+    csci_occ_ = []
+    n = len(results_)
+    for i in range(n):
+        csci_occ_.append(csci_.count(results_[i]))
+
+    results_ = list(zip(csci_, csci_occ_))
+    return results_
 
 
-# confuse_mx = binary_digit_clf(bd,bt)
-# print(f'Confusion matrix:\n{confuse_mx}')
+
+# classDF = pd.DataFrame({'Name': ["Ana","Bao","Cara","Dara","Ella","Fatima"],\
+#                           '# Credits': [45,50,80,115,30,90],\
+#                           'Current Courses': ["csci160 csci235 math160 jpn201",\
+#                                               "csci160 csci235 cla101 germn241",\
+#                                               "csci265 csci335 csci39542 germn241",\
+#                                               "csci49362 csci499",\
+#                                               "csci150 csci235 math160",\
+#                                               "csci335 csci39542 cla101 dan102"]})
+# print(f'Starting df:\n {classDF}\n')
+# print(f'CS courses:\n {byCourses(classDF)}')
+# csci150      1
+# csci160      2
+# csci235      3
+# csci265      1
+# csci335      2
+# csci39542    2
+# csci49362    1
+# csci499      1
