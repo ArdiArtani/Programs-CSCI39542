@@ -27,8 +27,7 @@ def byCourses(df):
     for i in range(n):
         csci_occ_.append(csci_.count(csci_unique_[i]))
 
-    results_ = [csci_unique_, csci_occ_]
-    return results_
+    return list(zip(csci_unique_, csci_occ_))
 
 
 
