@@ -11,5 +11,5 @@ Resources: Lecture 19 Slides
 from sklearn import datasets
 
 def binary_digit_clf(data, target, test_size = 0.25, random_state = 21):
-    digits_ = data.load digits()
+    digits_ = data.load_digits()
     return digits_
