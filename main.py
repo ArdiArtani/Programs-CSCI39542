@@ -1,43 +1,15 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: n/a
+Resources: Lecture 19 Slides
 """
+# data: a numpy array that includes rows of equal size flattend arrays,
+# target a numpy array that takes values 0 or 1 corresponding to the rows of data.
+# test_size: the size of the test set created when the data is divided into test and training sets with train_test_split. The default value is 0.25.
+# random_state: the random seed used when the data is divided into test and training sets with train_test_split. The default value is 21.
+# The function returns the Area Under the Curve (AUC) computed by sklearn.metrics.roc_auc_score as well as the classifier built.
+from sklearn import datasets
 
-# cleanReg(reg): If reg is coded as passenger 'PAS' or commercial 'COM', return those values. Otherwise, return 'OTHER'.
-def cleanReg(reg):
-    if(reg == 'PAS' or reg == 'COM'):
-        return reg
-    else:
-        return 'OTHER'
-
-# Return the following for the values of c:
-def cleanColor(c):
-    result_ = ''
-    # 'GRAY': for GY, GRAY, GREY,SILVE, SIL, SL,
-    if (c == 'GY') or (c == 'GRAY') or (c == 'GREY') or (c == 'SILVE') or (c == 'SIL') or (c == 'SL'):
-        result_ = 'GRAY'
-    # 'WHITE': for WH, WHITE,
-    elif (c == 'WH') or (c == 'WHITE'):
-        result_ = 'WHITE'
-    # 'BLACK': for BK, BLACK, BL,
-    elif (c == 'BK') or (c == 'BLACK') or (c == 'BL'):
-        result_ = 'BLACK'
-    # 'BLUE': for BLUE,
-    elif (c == 'BLUE'):
-        result_ = 'BLUE'
-    # 'RED': for RED, RD,
-    elif (c == 'RED') or (c == 'RD'):
-        result_ = 'RED'
-    # 'GREEN': for GR, GREEN,
-    elif (c == 'GR') or (c == 'GREEN'):
-        result_ = 'GREEN'
-    # 'BROWN': for BROWN, TAN,
-    elif (c == 'BROWN') or (c == 'TAN'):
-        result_ = 'BROWN'
-    # 'BROWN': for BROWN, TAN,
-    # Otherwise, return 'OTHER'.
-    else:
-        result_ = 'OTHER'
-
-    return result_
+def binary_digit_clf(data, target, test_size = 0.25, random_state = 21):
+    digits_ = datasets.load digits()
+    return digits_
