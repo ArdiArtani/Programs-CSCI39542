@@ -18,7 +18,6 @@ def byCourses(df):
         for course_ in courses_:
             if(course_.startswith('csci')):
                 csci_.append(course_)
-                # csci_[course_] +=1
 
     csci_unique_ = sorted(np.unique(csci_))
 
@@ -27,9 +26,8 @@ def byCourses(df):
     for i in range(n):
         csci_occ_.append(csci_.count(csci_unique_[i]))
 
-    return list(zip(csci_unique_, csci_occ_))
-
-
+    results_ = pd.Series(csci_occ_, index = csci_unique_)
+    return results_
 
 # classDF = pd.DataFrame({'Name': ["Ana","Bao","Cara","Dara","Ella","Fatima"],\
 #                           '# Credits': [45,50,80,115,30,90],\
