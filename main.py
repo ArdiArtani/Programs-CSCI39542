@@ -20,14 +20,14 @@ def byCourses(df):
                 csci_.append(course_)
                 # csci_[course_] +=1
 
-    results_ = sorted(np.unique(csci_))
+    csci_unique_ = sorted(np.unique(csci_))
 
     csci_occ_ = []
-    n = len(results_)
+    n = len(csci_unique_)
     for i in range(n):
-        csci_occ_.append(csci_.count(results_[i]))
+        csci_occ_.append(csci_.count(csci_unique_[i]))
 
-    results_ = list(zip(csci_, csci_occ_))
+    results_ = [csci_unique_, csci_occ_]
     return results_
 
 
@@ -40,7 +40,7 @@ def byCourses(df):
 #                                               "csci49362 csci499",\
 #                                               "csci150 csci235 math160",\
 #                                               "csci335 csci39542 cla101 dan102"]})
-# print(f'Starting df:\n {classDF}\n')
+# # print(f'Starting df:\n {classDF}\n')
 # print(f'CS courses:\n {byCourses(classDF)}')
 # csci150      1
 # csci160      2
