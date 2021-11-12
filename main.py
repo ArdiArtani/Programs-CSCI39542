@@ -3,8 +3,12 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: Lecture 19 Slides
 """
+#Import datasets, classifiers and performance metrics:
+from sklearn import datasets, svm, metrics
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+#Using the digits data set from sklearn:
 from sklearn import datasets
-from sklearn.metrics import roc_auc_score
 
 # data: a numpy array that includes rows of equal size flattend arrays,
 # target a numpy array that takes values 0 or 1 corresponding to the rows of data.
@@ -12,5 +16,12 @@ from sklearn.metrics import roc_auc_score
 # random_state: the random seed used when the data is divided into test and training sets with train_test_split. The default value is 21.
 # The function returns the Area Under the Curve (AUC) computed by sklearn.metrics.roc_auc_score as well as the classifier built.
 def binary_digit_clf(data, target, test_size = 0.25, random_state = 21):
-    digits_ = data.load_digits()
-    return digits_
+
+
+    digits = data.load_digits()
+    #flatten the images
+    n_samples = len(digits.images)
+    data = digits.images.reshape((n_samples, -1))
+    binaryDigits = [(d,t) for (d,t) in zip(data,digits.target) if t <= 1]
+    # bd,bt = zip(*binaryDigits)
+    return binaryDigits
