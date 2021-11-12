@@ -10,15 +10,13 @@ from sklearn.linear_model import LogisticRegression
 #Using the digits data set from sklearn:
 from sklearn import datasets
 
-
-digits = datasets.load_digits()
-#flatten the images
-n_samples = len(digits.images)
-data = digits.images.reshape((n_samples, -1))
-#Make a DataFrame with just the binary digits:
-binaryDigits = [(d,t) for (d,t) in zip(data,digits.target) if t <= 1]
-bd,bt = zip(*binaryDigits)
-
+# digits = datasets.load_digits()
+# #flatten the images
+# n_samples = len(digits.images)
+# data = digits.images.reshape((n_samples, -1))
+# #Make a DataFrame with just the binary digits:
+# binaryDigits = [(d,t) for (d,t) in zip(data,digits.target) if t <= 1]
+# bd,bt = zip(*binaryDigits)
 
 # data: a numpy array that includes rows of equal size flattend arrays,
 # target a numpy array that takes values 0 or 1 corresponding to the rows of data.
@@ -34,5 +32,5 @@ def binary_digit_clf(data, target, test_size = 0.25, random_state = 21):
     return confuse_mx
 
 
-confuse_mx = binary_digit_clf(bd,bt)
-print(f'Confusion matrix:\n{confuse_mx}')
+# confuse_mx = binary_digit_clf(bd,bt)
+# print(f'Confusion matrix:\n{confuse_mx}')
