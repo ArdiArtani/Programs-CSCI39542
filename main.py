@@ -14,7 +14,7 @@ from sklearn import datasets
 # The function returns the label of the class that is most commonly misidentified. That is, the row which has the number of entries not on the diagonal of all rows. If there are multiple classes that share the greatest fraction of mislabels, return the first one, as ordered in the maxtrix.
 def clf_misses(mx):
     i = 0
-    result_ = 0
+    result_ = row_index_ = 0
     for m in mx:
         diff_ = m.sum() - m[i]
         if(diff_ > result_):
