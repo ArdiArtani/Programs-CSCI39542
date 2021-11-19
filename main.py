@@ -1,25 +1,37 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: p42 code
+Resources: n/a
 """
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 
-def compare_clf(xes, y, test_size = 0.20, random_state=66,max_iter=500):
-    x_, x_test, y_, y_test = train_test_split(xes, y, random_state = random_state, test_size = test_size)
+# captures85(arr): Takes an array arr (in decreasing order), computes the captured variance (cv = (arr**2)/sum(arr**2)) and returns the number of elements needed to capture more than 85% of the variance.
+def captures85(arr):
+    cv = (arr**2)/sum(arr**2)
+    perc_ = 0
+    count_ = 0
+    for i in arr:
+        if(perc_ < 85):
+            perc_ += arr[i]
+            count_ += 1
+    return count_
 
-    # grab LogisticRegression score
-    clf = LogisticRegression(max_iter = max_iter)
-    clf.fit(x_,y_)
-    logistic_score_ = clf.score(x_test, y_test)
 
-    # grab SVC score
-    clf_svc_ = SVC()
-    clf_svc_.fit(x_,y_)
-    svc_score_ = clf_svc_.score(x_test, y_test)
+def averageEigenvalue(arr):
+    cv = (arr**2)/sum(arr**2)
+    count_ = 0
+    avg_ = cv.mean()
+    for i in arr:
+        if (arr[i] > avg_):
+            count_ += 1
 
-    return logistic_score_, svc_score_
+    return count_
+
+
+# a = np.array([585.57, 261.06, 166.31,  57.14,  48.16,  39.79,  31.71,  28.91,
+#       24.23,  22.23,  20.51,  18.96,  17.01,  15.73,   7.72,   4.3 ,
+#       1.95,   0.04])
+#
+# captures85(a)
+# averageEigenvalue(a)
