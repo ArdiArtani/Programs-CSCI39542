@@ -1,7 +1,7 @@
 """
 Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
-Resources: p42 hints, numpy.org
+Resources: p42 code
 """
 import numpy as np
 import pandas as pd
