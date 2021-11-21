@@ -12,11 +12,10 @@ def captures85(arr):
     perc_ = 0
     count_ = 0
     for value_ in cv:
-        if(perc_ < 85):
-            perc_ = value_
+        if((perc_*100) < 85):
+            perc_ += value_
             count_ += 1
     return count_
-
 
 def averageEigenvalue(arr):
     cv = (arr**2)/sum(arr**2)
@@ -28,11 +27,7 @@ def averageEigenvalue(arr):
 
     return count_
 
-# a = np.array([585.57, 261.06, 166.31,  57.14,  48.16,  39.79,  31.71,  28.91,
-#       24.23,  22.23,  20.51,  18.96,  17.01,  15.73,   7.72,   4.3 ,
-#       1.95,   0.04])
-
+# a = np.array([585.57, 261.06, 166.31,  57.14,  48.16,  39.79,  31.71,  28.91, 24.23,  22.23,  20.51,  18.96,  17.01,  15.73,   7.72,   4.3 , 1.95,   0.04])
 # array([0.76, 0.15, 0.06, 0.01, 0.01, 0.  , 0.  , 0.  ,   0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  ])
-
 # print(captures85(a))
 # print(averageEigenvalue(a))
