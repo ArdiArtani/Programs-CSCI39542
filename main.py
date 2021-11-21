@@ -11,9 +11,10 @@ def captures85(arr):
     cv = (arr**2)/sum(arr**2)
     perc_ = 0
     count_ = 0
-    for i in arr:
+    i = 0
+    for value_ in arr:
         if(perc_ < 85):
-            perc_ += arr[i]
+            perc_ = value_
             count_ += 1
     return count_
 
@@ -22,8 +23,8 @@ def averageEigenvalue(arr):
     cv = (arr**2)/sum(arr**2)
     count_ = 0
     avg_ = cv.mean()
-    for i in arr:
-        if (arr[i] > avg_):
+    for value_ in arr:
+        if (value_> avg_):
             count_ += 1
 
     return count_
@@ -33,5 +34,5 @@ def averageEigenvalue(arr):
 #       24.23,  22.23,  20.51,  18.96,  17.01,  15.73,   7.72,   4.3 ,
 #       1.95,   0.04])
 #
-# captures85(a)
-# averageEigenvalue(a)
+# print(captures85(a))
+# print(averageEigenvalue(a))
