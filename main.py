@@ -3,31 +3,19 @@ Name: Ardi Artani
 Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
-import numpy as np
-import pandas as pd
 
-# captures85(arr): Takes an array arr (in decreasing order), computes the captured variance (cv = (arr**2)/sum(arr**2)) and returns the number of elements needed to capture more than 85% of the variance.
-def captures85(arr):
-    cv = (arr**2)/sum(arr**2)
-    perc_ = 0
-    count_ = 0
-    for value_ in cv:
-        if((perc_*100) < 85):
-            perc_ += value_
-            count_ += 1
-    return count_
+# numComponents: the number of componets used in the approximation. Expecting a value between 0 and 64.
+# coefficients: an array of coefficients, outputted from PCA().
+# mean: an array representing the mean of the dataset.
+# components: an array of the components computed by PCA() analysis.
+# The function returns the approximation image (flattened array) of the mean and sum of the first numComponents terms (i.e. coefficients[i] * components[i]).
 
-def averageEigenvalue(arr):
-    cv = (arr**2)/sum(arr**2)
-    count_ = 0
-    avg_ = cv.mean()
-    for value_ in cv:
-        if (value_ > avg_):
-            count_ += 1
 
-    return count_
+def approxDigits(numComponents, coefficients, mean, components):
 
-# a = np.array([585.57, 261.06, 166.31,  57.14,  48.16,  39.79,  31.71,  28.91, 24.23,  22.23,  20.51,  18.96,  17.01,  15.73,   7.72,   4.3 , 1.95,   0.04])
-# array([0.76, 0.15, 0.06, 0.01, 0.01, 0.  , 0.  , 0.  ,   0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  , 0.  ])
-# print(captures85(a))
-# print(averageEigenvalue(a))
+    sum_ = 0
+    for comp_ in numComponents:
+        sum_ += coefficients[comp_] * components[comp_]
+
+    sum_ = sum_ + sum_.mean()
+    return sum_
