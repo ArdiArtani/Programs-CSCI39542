@@ -17,5 +17,5 @@ def approxDigits(numComponents, coefficients, mean, components):
     for comp_ in range(numComponents):
         sum_ += coefficients[comp_] * components[comp_]
 
-    sum_ = sum_ + sum_.mean()
+    sum_ = sum_ + mean
     return sum_
