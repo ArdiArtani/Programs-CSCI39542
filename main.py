@@ -22,9 +22,7 @@ from scipy.spatial.distance import cdist
 # The distance matrix is used to fit the MDS model and the result of fit_transform is returned.
 def makeMDS(points, metric='euclidean', random_state=25):
 
-    cdist_ = cdist(points, points, metric)
-    print(cdist_)
-
+    # cdist_ = cdist(points, points, metric)
     return 0
 
 
