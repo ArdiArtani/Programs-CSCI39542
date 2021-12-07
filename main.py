@@ -4,6 +4,8 @@ Email: ARDI.ARTANI96@myhunter.cuny.edu
 Resources: n/a
 """
 from sklearn.datasets import load_sample_image
+from sklearn.cluster import MiniBatchKMeans
+
 
 # This function has three inputs and returns an np-array containing the recolored image:
 # img: an np-array containing an image, from sklearn.datasets.load_sample_image()sor plt.imread().
